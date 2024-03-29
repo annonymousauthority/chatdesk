@@ -1,0 +1,7 @@
+fastapi==0.68.0
+uvicorn==0.15.0
+python-dotenv==0.19.1
+pytest==7.4.3
+pyPDF2==3.0.1
+openai=1.13.3
+pydantic=1.10.14

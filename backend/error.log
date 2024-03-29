@@ -1,0 +1,9 @@
+2024-03-29 17:10:44,804 [ERROR] - Error uploading file 'utf-8' codec can't decode byte 0xd3 in position 10: invalid continuation byte
+2024-03-29 17:13:05,629 [ERROR] - Error uploading file decode() argument 'encoding' must be str, not None
+2024-03-29 17:13:43,203 [ERROR] - Error uploading file 'utf-8' codec can't decode byte 0xd3 in position 10: invalid continuation byte
+2024-03-29 17:17:42,539 [ERROR] - Error uploading file name 'io' is not defined
+2024-03-29 17:53:27,570 [ERROR] - Error uploading file No API key provided. You can set your API key in code using 'voyageai.api_key = <API-KEY>', or set the environment variable VOYAGE_API_KEY=<API-KEY>). If your API key is stored in a file, you can point the voyageai module at it with 'voyageai.api_key_path = <PATH>', or set the environment variable VOYAGE_API_KEY_PATH=<PATH>. API keys can be generated in Voyage AI's dashboard (https://dash.voyageai.com).
+2024-03-29 17:56:16,198 [ERROR] - Error uploading file No API key provided. You can set your API key in code using 'voyageai.api_key = <API-KEY>', or set the environment variable VOYAGE_API_KEY=<API-KEY>). If your API key is stored in a file, you can point the voyageai module at it with 'voyageai.api_key_path = <PATH>', or set the environment variable VOYAGE_API_KEY_PATH=<PATH>. API keys can be generated in Voyage AI's dashboard (https://dash.voyageai.com).
+2024-03-29 18:19:17,026 [ERROR] - Error uploading file The server is overloaded or not ready yet.
+2024-03-29 18:29:42,771 [ERROR] - Error uploading file query_embeddings() missing 1 required positional argument: 'document'
+2024-03-29 18:29:47,501 [ERROR] - Error uploading file query_embeddings() missing 1 required positional argument: 'document'
