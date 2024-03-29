@@ -30,11 +30,11 @@ export default function ChatScreen({
       chat: arrayUnion(chat),
     })
 
-    await fetch('https://chatdesk-u4xh.onrender.com/queryembeddings', {
+    await fetch('https://chatdesk-u4xh.onrender.com/queryembeddings/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        query: message.toString(),
+        query: message,
       }),
     })
       .then((response) => {

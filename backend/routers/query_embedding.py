@@ -2,10 +2,13 @@ from typing import List
 from fastapi import APIRouter, Body
 from fastapi import FastAPI, File, UploadFile, HTTPException
 import os
+
+from openai import OpenAI
 from helpers.document_format import format_document
 from logging import getLogger
 from helpers.chat_system import embed_query
 from pydantic import BaseModel
+from helpers.prompt_structure import prompt_structure
 
 # logger code
 debug_logger = getLogger("debug_logger")
@@ -43,7 +46,24 @@ async def query_embeddings(request_body: QueryRequest = Body(...)):
             print(f"Index: {r.index}")
             print("\n")
         info_logger.info(f"Query successfull.")
-        return {"retrieved_document": document_rereanked.results[0].document}
+        client = OpenAI(api_key="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")
+        prompt = prompt_structure(
+            prompt=query,
+            category="Customer Rep",
+            context=document_rereanked.results[0].document,
+        )
+
+        response = client.chat.completions.create(
+            model="gpt-4-1106-preview",
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": prompt},
+            ],
+        )
+        return {
+            "retrieved_document": document_rereanked.results[0].document,
+            "augmented_response": response,
+        }
     except Exception as e:
         error_logger.error(f"Error uploading file {str(e)}")
         raise HTTPException(status_code=500, detail=f"Internal Server Error ${str(e)}")

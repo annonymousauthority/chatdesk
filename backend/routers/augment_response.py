@@ -33,7 +33,7 @@ async def augment_response(request_body: QueryRequest = Body(...)):
     category = request_body.category
     context = request_body.context
 
-    client = OpenAI(api_key="YOUR OPENAI API KEY")
+    client = OpenAI(api_key="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")
     prompt = prompt_structure(prompt=query, category=category, context=context)
 
     response = client.chat.completions.create(
