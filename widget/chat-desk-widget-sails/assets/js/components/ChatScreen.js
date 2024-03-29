@@ -2,20 +2,6 @@ import { appFirestore } from '@/config/firebase'
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore'
 import React, { useState } from 'react'
 
-const sampleChat = [
-  {
-    id: 1,
-    sender: 'user',
-    message:
-      "Hello, I'm having trouble signing up to the chat desk platform, it says 'unable to signin, try again later' ",
-  },
-  {
-    id: 2,
-    sender: 'ai',
-    message:
-      "Hello Alex, thank you for reaching out. We're currently having some system downtime, and would be up shortly.",
-  },
-]
 export default function ChatScreen({
   agentConfig,
   id,
@@ -43,6 +29,13 @@ export default function ChatScreen({
     setChats(updatedChat)
     await updateDoc(chatRef, {
       chat: arrayUnion(chat),
+    })
+    await fetch('https://chatdesk-u4xh.onrender.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        
+      })
     })
     setMessage('')
   }

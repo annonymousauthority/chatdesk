@@ -22,7 +22,7 @@ router = APIRouter()
 
 
 @router.post("/queryembeddings/")
-async def create_chunk_document(request_body: QueryRequest = Body(...)):
+async def query_embeddings(request_body: QueryRequest = Body(...)):
     query = request_body.query
     document = request_body.document
 
