@@ -62,7 +62,7 @@ async def query_embeddings(request_body: QueryRequest = Body(...)):
         )
         return {
             "retrieved_document": document_rereanked.results[0].document,
-            "augmented_response": response,
+            "augmented_response": response.message.content,
         }
     except Exception as e:
         error_logger.error(f"Error uploading file {str(e)}")
