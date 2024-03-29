@@ -4,7 +4,7 @@ from fastapi import FastAPI, File, UploadFile, HTTPException
 import os
 from helpers.document_format import format_document
 from logging import getLogger
-from helpers.chat_system import query_embeddings
+from helpers.chat_system import embed_query
 from pydantic import BaseModel
 
 # logger code
@@ -36,7 +36,7 @@ async def query_embeddings(request_body: QueryRequest = Body(...)):
         "Your learning will be done online via Discord, and your learning materials will be uploaded to a private folder on your Google Drive. You will also access a learning leaderboard where everyone is evaluated based on their submissions. If you want to know more about what the curriculum covers, you can visit https://learnwithaugustine.com/#program .",
     ]
     try:
-        document_rereanked = query_embeddings(query=query, document=document)
+        document_rereanked = embed_query(query=query, document=document)
         for r in document_rereanked.results:
             print(f"Document: {r.document}")
             print(f"Relevance Score: {r.relevance_score}")

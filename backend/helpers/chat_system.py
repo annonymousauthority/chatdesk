@@ -12,7 +12,7 @@ def voyage_embed(documents):
     return documents_embeddings
 
 
-def query_embeddings(query, document):
+def embed_query(query, document):
     vo = voyageai.Client(api_key="pa-brrh3dJ02Q_orn6njC0DTCMyiivHhGGEiKv1ETXElco")
 
     query_embedding = vo.embed(
