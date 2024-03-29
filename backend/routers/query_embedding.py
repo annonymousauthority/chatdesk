@@ -24,8 +24,18 @@ router = APIRouter()
 @router.post("/queryembeddings/")
 async def query_embeddings(request_body: QueryRequest = Body(...)):
     query = request_body.query
-    document = request_body.document
-
+    document = [
+        "The School of AI is an AI learning community that teaches you the fundamental building blocks in building and integrating AI models for commercial software applications. You will learn Classification, Vector Database, Python, Natural Language Processing, and Generative AI. The Program is broken down into 3 Tiers spread across a year, each student starts from the first tier and decides to go up the other Tiers.",
+        "You will learn Classification, Vector Database, Python, Natural Language Processing, and Generative AI. The Program is broken down into 3 Tiers spread across a year, each student starts from the first tier and decides to go up the other Tiers. The admission fee for Tier I is $250, covering 4 months.",
+        "The Program is broken down into 3 Tiers spread across a year, each student starts from the first tier and decides to go up the other Tiers. The admission fee for Tier I is $250, covering 4 months. The admission fee for Tier II is $500, covering 4 months.",
+        "The admission fee for Tier I is $250, covering 4 months. The admission fee for Tier II is $500, covering 4 months. The admission fee for Tier III is $750, Covering 4 months.",
+        "The admission fee for Tier II is $500, covering 4 months. The admission fee for Tier III is $750, Covering 4 months. The program uses a Fee payment plan for its students where payment is made monthly.",
+        "The admission fee for Tier III is $750, Covering 4 months. The program uses a Fee payment plan for its students where payment is made monthly. We also offer scholarships and admission fee adjustments for certain countries.",
+        "The program uses a Fee payment plan for its students where payment is made monthly. We also offer scholarships and admission fee adjustments for certain countries. Here’s the link to register: https://learnwithaugustine.com/applynow .",
+        "We also offer scholarships and admission fee adjustments for certain countries. Here’s the link to register: https://learnwithaugustine.com/applynow . Your learning will be done online via Discord, and your learning materials will be uploaded to a private folder on your Google Drive.",
+        "Here’s the link to register: https://learnwithaugustine.com/applynow . Your learning will be done online via Discord, and your learning materials will be uploaded to a private folder on your Google Drive. You will also access a learning leaderboard where everyone is evaluated based on their submissions.",
+        "Your learning will be done online via Discord, and your learning materials will be uploaded to a private folder on your Google Drive. You will also access a learning leaderboard where everyone is evaluated based on their submissions. If you want to know more about what the curriculum covers, you can visit https://learnwithaugustine.com/#program .",
+    ]
     try:
         document_rereanked = query_embeddings(query=query, document=document)
         for r in document_rereanked.results:

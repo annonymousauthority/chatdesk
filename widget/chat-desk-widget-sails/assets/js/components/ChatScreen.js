@@ -1,7 +1,6 @@
 import { appFirestore } from '@/config/firebase'
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore'
 import React, { useState } from 'react'
-
 export default function ChatScreen({
   agentConfig,
   id,
@@ -30,14 +29,23 @@ export default function ChatScreen({
     await updateDoc(chatRef, {
       chat: arrayUnion(chat),
     })
-    await fetch('https://chatdesk-u4xh.onrender.com', {
+
+    await fetch('https://chatdesk-u4xh.onrender.com/queryembeddings', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json'},
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        
-      })
+        query: message,
+        document: JSON.stringify(agentConfig.document),
+      }),
     })
-    setMessage('')
+      .then((response) => {
+        console.log(response)
+        setMessage('')
+      })
+      .catch((error) => {
+        console.log(error)
+        setMessage('')
+      })
   }
   return (
     <div className="w-full overflow-hidden">
@@ -56,7 +64,7 @@ export default function ChatScreen({
         {chats.map((e, i) => {
           if (e.sender == 'ai') {
             return (
-              <div className="flex w-full justify-start">
+              <div key={i} className="flex w-full justify-start">
                 <div className="flex w-3/4 flex-wrap justify-start rounded-xl bg-green-100 p-3 text-sm font-light text-gray-600">
                   <span>{e.message}</span>
                 </div>
@@ -65,7 +73,7 @@ export default function ChatScreen({
           }
           if (e.sender == 'user') {
             return (
-              <div className="flex w-full justify-end">
+              <div key={i} className="flex w-full justify-end">
                 <div className="flex w-3/4 flex-wrap justify-end rounded-xl bg-pink-100 p-3 text-sm font-light text-gray-600">
                   <span>{e.message}</span>
                 </div>
