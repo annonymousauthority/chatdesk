@@ -35,6 +35,9 @@ export default function ChatScreen({
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         query: message,
+        category:"Customer Rep.",
+        document: agentConfig.document,
+        
       }),
     })
       .then((response) => {
