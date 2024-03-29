@@ -3,9 +3,17 @@ from logger_setup import setup_logger
 from logging import getLogger
 import os
 from routers import process_documents, query_embedding
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 setup_logger()
 

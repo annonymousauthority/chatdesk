@@ -1,6 +1,6 @@
 import { appFirestore } from '@/config/firebase'
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore'
-import React, { useState } from 'react'
+import { useState } from 'react'
 export default function ChatScreen({
   agentConfig,
   id,
@@ -35,9 +35,9 @@ export default function ChatScreen({
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         query: message,
-        category:"Customer Rep.",
+        category: 'Customer Rep.',
         document: agentConfig.document,
-        
+        name: customer.name,
       }),
     })
       .then((response) => {
