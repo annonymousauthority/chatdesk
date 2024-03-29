@@ -46,4 +46,4 @@ async def query_embeddings(request_body: QueryRequest = Body(...)):
         return {"retrieved_document": document_rereanked.results[0].document}
     except Exception as e:
         error_logger.error(f"Error uploading file {str(e)}")
-        raise HTTPException(status_code=500, detail="Internal Server Error")
+        raise HTTPException(status_code=500, detail=f"Internal Server Error ${str(e)}")
