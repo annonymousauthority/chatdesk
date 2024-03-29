@@ -15,7 +15,6 @@ error_logger = getLogger("error_logger")
 
 class QueryRequest(BaseModel):
     query: str
-    document: List[str]
 
 
 router = APIRouter()

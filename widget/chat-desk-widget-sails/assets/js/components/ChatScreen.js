@@ -34,8 +34,7 @@ export default function ChatScreen({
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        query: message,
-        document: JSON.stringify(agentConfig.document),
+        query: message.toString(),
       }),
     })
       .then((response) => {
