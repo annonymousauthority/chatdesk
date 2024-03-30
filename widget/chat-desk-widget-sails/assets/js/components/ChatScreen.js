@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { appFirestore } from '@/config/firebase'
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
@@ -56,13 +57,14 @@ export default function ChatScreen({
         category: 'Customer Rep.',
         document: agentConfig.document,
         name: customer.name,
+        agent: agentConfig.name,
       }),
     })
       .then(async (response) => {
         const json = await response.json()
         console.log(json)
         let chat = {
-          id: chats.length + 1,
+          id: updatedChat.length + 1,
           sender: 'ai',
           message: json.augmented_response,
         }
@@ -84,7 +86,7 @@ export default function ChatScreen({
       })
   }
   return (
-    <div className="w-full h-full overflow-y-auto py-6">
+    <div className="h-full w-full overflow-y-auto py-6">
       <div className="absolute left-0 top-0 flex h-[35px] w-full items-center justify-between rounded-tl-xl rounded-tr-xl border-2 border-blue-700 bg-blue-700 p-2">
         <span className="text-sm font-light text-white">Chat with Alakey</span>
         <button
