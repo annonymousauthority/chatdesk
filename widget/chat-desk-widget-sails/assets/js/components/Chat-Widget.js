@@ -6,9 +6,6 @@ import { ChevronDownIcon } from '@heroicons/react/24/solid'
 export default function ChatWidget({ agentConfig, id, agentKey }) {
   const [loadChat, setLoadChat] = useState(false)
   const [view, setView] = useState(0)
-  const [message, setMessage] = useState('')
-  const [agentName, setAgentName] = useState('')
-  const [agentDescription, setAgentDescription] = useState('')
   const [customer, setCustomer] = useState({
     email: '',
     name: '',

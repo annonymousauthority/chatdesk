@@ -63,7 +63,7 @@ export default function ChatScreen({
       .then(async (response) => {
         const json = await response.json()
         console.log(json)
-        let chat = {
+        let ai_chat = {
           id: updatedChat.length + 1,
           sender: 'ai',
           message: json.augmented_response,
@@ -73,9 +73,9 @@ export default function ChatScreen({
           `USERS/${id}/${agentKey}`,
           `Chat-by-${customer.email}`
         )
-        const updatedChat = [...chats]
-        updatedChat.push(chat)
-        setChats(updatedChat)
+        const uchat = [...updatedChat]
+        uchat.push(ai_chat)
+        setChats(uchat)
         await updateDoc(chatRef, {
           chat: arrayUnion(chat),
         })
