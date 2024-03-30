@@ -84,7 +84,7 @@ export default function ChatScreen({
       })
   }
   return (
-    <div className="w-full overflow-y-auto py-6">
+    <div className="w-full h-full overflow-y-auto py-6">
       <div className="absolute left-0 top-0 flex h-[35px] w-full items-center justify-between rounded-tl-xl rounded-tr-xl border-2 border-blue-700 bg-blue-700 p-2">
         <span className="text-sm font-light text-white">Chat with Alakey</span>
         <button
@@ -96,7 +96,7 @@ export default function ChatScreen({
         </button>
       </div>
 
-      <div className="mt-12 flex w-full flex-col space-y-2 overflow-y-auto">
+      <div className="my-12 flex w-full flex-col space-y-2 ">
         {chats.map((e, i) => {
           if (e.sender == 'ai') {
             return (
