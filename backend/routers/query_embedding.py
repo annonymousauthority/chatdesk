@@ -52,7 +52,7 @@ async def query_embeddings(request_body: QueryRequest = Body(...)):
         )
 
         response = client.chat.completions.create(
-            model="gpt-4-1106-preview",
+            model="gpt-4-0125-preview",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": prompt},
