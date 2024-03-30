@@ -1,6 +1,6 @@
 import { appFirestore } from '@/config/firebase'
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 export default function ChatScreen({
   agentConfig,
   id,
@@ -11,8 +11,25 @@ export default function ChatScreen({
   const [message, setMessage] = useState('')
   const [chats, setChats] = useState([])
 
+  useEffect(() => {
+    setTimeout(() => {
+      if (chats.length == 0) {
+        let chat = [
+          ...chats,
+          {
+            id: chats.length + 1,
+            sender: 'ai',
+            message: `Hello ${customer.name}, my name is ${agentConfig.name}. How can I help you today?`,
+          },
+        ]
+
+        setChats(chat)
+      }
+    }, 1500)
+  }, [])
   async function createMessage(e) {
     e.preventDefault()
+    const mes = message
     let chat = {
       id: chats.length + 1,
       sender: 'user',
@@ -29,20 +46,37 @@ export default function ChatScreen({
     await updateDoc(chatRef, {
       chat: arrayUnion(chat),
     })
+    setMessage('')
 
     await fetch('https://chatdesk-u4xh.onrender.com/queryembeddings/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        query: message,
+        query: mes,
         category: 'Customer Rep.',
         document: agentConfig.document,
         name: customer.name,
       }),
     })
-      .then((response) => {
-        console.log(response)
-        setMessage('')
+      .then(async (response) => {
+        const json = await response.json()
+        console.log(json)
+        let chat = {
+          id: chats.length + 1,
+          sender: 'ai',
+          message: json.augmented_response,
+        }
+        const chatRef = doc(
+          appFirestore,
+          `USERS/${id}/${agentKey}`,
+          `Chat-by-${customer.email}`
+        )
+        const updatedChat = [...chats]
+        updatedChat.push(chat)
+        setChats(updatedChat)
+        await updateDoc(chatRef, {
+          chat: arrayUnion(chat),
+        })
       })
       .catch((error) => {
         console.log(error)
@@ -50,7 +84,7 @@ export default function ChatScreen({
       })
   }
   return (
-    <div className="w-full overflow-hidden">
+    <div className="w-full overflow-y-auto py-6">
       <div className="absolute left-0 top-0 flex h-[35px] w-full items-center justify-between rounded-tl-xl rounded-tr-xl border-2 border-blue-700 bg-blue-700 p-2">
         <span className="text-sm font-light text-white">Chat with Alakey</span>
         <button
@@ -62,7 +96,7 @@ export default function ChatScreen({
         </button>
       </div>
 
-      <div className="mt-12 flex h-full w-full flex-col space-y-2 overflow-y-auto">
+      <div className="mt-12 flex w-full flex-col space-y-2 overflow-y-auto">
         {chats.map((e, i) => {
           if (e.sender == 'ai') {
             return (

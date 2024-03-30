@@ -2,7 +2,7 @@ import { useState } from 'react'
 import ChatScreen from './ChatScreen'
 import { doc, setDoc } from 'firebase/firestore'
 import { appFirestore } from '@/config/firebase'
-
+import { ChevronDownIcon } from '@heroicons/react/24/solid'
 export default function ChatWidget({ agentConfig, id, agentKey }) {
   const [loadChat, setLoadChat] = useState(false)
   const [view, setView] = useState(0)
@@ -29,7 +29,7 @@ export default function ChatWidget({ agentConfig, id, agentKey }) {
     switch (view) {
       case 0:
         return (
-          <div className="absolute bottom-0 right-0 z-50 m-12 mb-28 flex min-h-[500px] min-w-[380px] max-w-[480px] flex-col rounded-2xl border-2 border-blue-300 bg-gradient-to-b from-blue-600 via-blue-500 to-white px-8 shadow-xl shadow-blue-100 transition-transform delay-75 duration-300 ease-in-out">
+          <div className="absolute bottom-0 right-0 z-50 m-12 mb-28 flex flex-col rounded-2xl border-2 border-blue-300 bg-gradient-to-b from-blue-600 via-blue-500 to-white px-8 shadow-xl shadow-blue-100 transition-transform delay-75 duration-300 ease-in-out lg:h-[75%] lg:w-[380px]">
             <div className="mt-12 flex w-full flex-col text-3xl font-bold text-white">
               <span>Hello ❤️</span>
               <span>How can we help?</span>
@@ -117,24 +117,19 @@ export default function ChatWidget({ agentConfig, id, agentKey }) {
               onClick={() => setLoadChat(!loadChat)}
               className={
                 loadChat
-                  ? 'absolute -bottom-10 right-0 rotate-[360deg] transition-transform delay-75 duration-300 hover:scale-110 hover:transition-transform'
-                  : 'absolute -bottom-10 right-0 rotate-90 transition-transform delay-75 duration-300 hover:scale-110 hover:transition-transform'
+                  ? 'absolute -bottom-14 right-0 h-10 w-10 rotate-[360deg] rounded-full bg-blue-500 transition-transform delay-75 duration-300 hover:scale-110 hover:transition-transform'
+                  : 'absolute -bottom-14 right-0 h-10 w-10 rotate-90 bg-blue-500 transition-transform delay-75 duration-300 hover:scale-110 hover:transition-transform'
               }
             >
-              <img
-                alt="Widget Icon"
-                src="/images/close_widget.png"
-                width={65}
-                height={65}
-              />
+              <ChevronDownIcon className="mx-auto h-6 w-6 font-bold text-white" />
             </button>
           </div>
         )
       case 1:
         return (
-          <div className="absolute bottom-0 right-0 z-50 m-12 mb-28 flex min-h-[500px] min-w-[340px] max-w-[380px] flex-col rounded-2xl border-2 border-blue-300 bg-gradient-to-b from-blue-600 via-blue-500 to-white shadow-xl shadow-blue-100">
-            <div className="flex h-full w-full flex-col items-center justify-start overflow-auto px-4">
-              <div className="mt-12 flex h-full w-full flex-col items-start justify-start overflow-y-auto text-left text-white">
+          <div className="absolute bottom-0 right-0 z-50 m-12 mb-28 flex flex-col rounded-2xl border-2 border-blue-300 bg-gradient-to-b from-blue-600 via-blue-500 to-white shadow-xl shadow-blue-100 lg:h-[75%] lg:w-[380px]">
+            <div className="flex h-full w-full flex-col items-start justify-start overflow-y-auto px-4">
+              <div className="mt-12 flex w-full flex-col items-start justify-start text-left text-white">
                 <span className="w-full text-xl font-semibold">
                   Hello, My name is {agentConfig?.name}
                 </span>
@@ -147,7 +142,7 @@ export default function ChatWidget({ agentConfig, id, agentKey }) {
                 className="mt-6 flex w-full flex-col space-y-4"
               >
                 <div className="flex flex-col justify-start">
-                  <label className="text-sm font-light text-gray-800">
+                  <label className="text-sm font-light text-gray-200">
                     Name:
                   </label>
                   <input
@@ -164,7 +159,7 @@ export default function ChatWidget({ agentConfig, id, agentKey }) {
                   ></input>
                 </div>
                 <div className="flex flex-col justify-start">
-                  <label className="text-sm font-light text-gray-800">
+                  <label className="text-sm font-light text-gray-200">
                     Email:
                   </label>
                   <input
@@ -242,21 +237,23 @@ export default function ChatWidget({ agentConfig, id, agentKey }) {
         )
       case 2:
         return (
-          <div className="absolute bottom-0 right-0 z-50 m-12 mb-28 flex min-h-[500px] min-w-[340px] max-w-[380px] flex-col rounded-xl border-2 border-blue-300 bg-blue-100 to-white px-8 shadow-xl shadow-blue-100">
-            <ChatScreen
-              customer={customer}
-              agentConfig={agentConfig}
-              agentKey={agentKey}
-              id={id}
-              onClose={() => {
-                setInSession(false)
-                setCustomer({
-                  email: '',
-                  name: '',
-                })
-                setView(0)
-              }}
-            />
+          <div className="absolute bottom-0 right-0 z-50 m-12 mb-28 flex flex-col rounded-xl border-2 border-blue-300 bg-blue-100 to-white px-8 shadow-xl shadow-blue-100 lg:h-[75%] lg:w-[380px]">
+            <div className="h-full w-full overflow-y-auto">
+              <ChatScreen
+                customer={customer}
+                agentConfig={agentConfig}
+                agentKey={agentKey}
+                id={id}
+                onClose={() => {
+                  setInSession(false)
+                  setCustomer({
+                    email: '',
+                    name: '',
+                  })
+                  setView(0)
+                }}
+              />
+            </div>
             <button
               onClick={() => setLoadChat(!loadChat)}
               className={
@@ -287,8 +284,8 @@ export default function ChatWidget({ agentConfig, id, agentKey }) {
           <img
             alt="Widget Icon"
             src="/images/chat_icon.png"
-            width={65}
-            height={65}
+            width={45}
+            height={45}
           />
         </button>
       </div>
