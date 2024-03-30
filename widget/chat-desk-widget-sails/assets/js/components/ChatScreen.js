@@ -104,16 +104,16 @@ export default function ChatScreen({
             return (
               <div key={i} className="flex w-full justify-start">
                 <div className="flex w-3/4 flex-wrap justify-start rounded-xl bg-green-100 p-3 text-sm font-light text-gray-600">
-                  <span>{e.message}</span>
+                  <span className="flex w-full flex-wrap text-sm">{e.message}</span>
                 </div>
               </div>
             )
           }
           if (e.sender == 'user') {
             return (
-              <div key={i} className="flex w-full justify-end">
+              <div key={i} className="flex w-full flex-wrap justify-end">
                 <div className="flex w-3/4 flex-wrap justify-end rounded-xl bg-pink-100 p-3 text-sm font-light text-gray-600">
-                  <span>{e.message}</span>
+                  <span className="flex w-full flex-wrap text-sm">{e.message}</span>
                 </div>
               </div>
             )
