@@ -1,7 +1,14 @@
 import FeedBack404 from '@/components/FeedBack404'
+import LoaderSpinner from '@/components/Loader-Comp'
 import { Listbox, Transition } from '@headlessui/react'
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
-import { Fragment, useState } from 'react'
+import {
+  CheckIcon,
+  ChevronUpDownIcon,
+  StarIcon,
+} from '@heroicons/react/20/solid'
+import { collection, doc, getDocs } from 'firebase/firestore'
+import { Fragment, useEffect, useState } from 'react'
+import { appFirestore } from '../lib/firebase'
 
 const startRating = [
   { id: 1, name: '1 Star' },
@@ -17,11 +24,39 @@ function classNames(...classes) {
 
 export default function FeedbackHistory({ user }) {
   const [selected, setSelected] = useState(startRating[3])
+  const [feedbackHistory, setFeedbackHistory] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
 
+  useEffect(() => {
+    ;(async () => {
+      let history = []
+      const userDocRef = doc(appFirestore, 'USERS', user.email)
+      const agentCollectionRef = collection(userDocRef, user.agent_key)
+
+      const qSnap = await getDocs(agentCollectionRef)
+
+      qSnap.forEach((doc) => {
+        if (doc.id !== 'config') {
+          history.push({
+            id: doc.id,
+            rating: doc.data().feedback,
+            comment: doc.data().feedback_comment,
+            name: doc.data().name,
+          })
+        }
+      })
+      setFeedbackHistory(history)
+      setTimeout(() => {
+        setIsLoading(false)
+      }, 500)
+    })()
+  }, [])
   return (
     <div className="flex h-screen flex-col items-start justify-start">
       <div className="flex flex-col items-start justify-start">
-        <h1 className="text-4xl font-bold text-gray-400 dark:text-gray-200">Customers Feedback</h1>
+        <h1 className="text-4xl font-bold text-gray-600 dark:text-gray-200">
+          Customers Feedback
+        </h1>
         <p className="text-sm text-gray-400">
           View the feedback from chat sessions of all your Chat Agents.
         </p>
@@ -98,8 +133,53 @@ export default function FeedbackHistory({ user }) {
           </Listbox>
         </div>
       </div>
-      <div className="mx-auto flex items-center justify-center">
-        <FeedBack404 />
+      <div className="mt-6 flex items-center justify-start">
+        {!isLoading ? (
+          <div className="w-full">
+            {feedbackHistory != null ? (
+              <div className="flex flex-wrap gap-2">
+                {feedbackHistory.map((e, i) => {
+                  return (
+                    <div
+                      className={`flex h-full w-1/2 flex-col items-center justify-start rounded-xl p-3 ${
+                        i % 2 === 0 ? 'bg-pink-500' : 'bg-blue-500'
+                      }`}
+                    >
+                      <span className="text-sm font-semibold text-white">
+                        {e.comment}
+                      </span>
+                      <div className="mt-3 flex w-full items-center justify-between">
+                        <span className="text-sm font-light text-gray-100">
+                          {e.name}
+                        </span>
+                        <div className="flex items-center justify-start">
+                          {Array.from({ length: e.rating }, (_, index) => (
+                            <StarIcon
+                              key={index}
+                              className="h-6 w-6 text-yellow-500"
+                            />
+                          ))}
+                          {Array.from({ length: 5 - e.rating }, (_, index) => (
+                            <StarIcon
+                              key={index}
+                              className="h-6 w-6 text-gray-100"
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            ) : (
+              <FeedBack404 />
+            )}
+          </div>
+        ) : (
+          <div className="text-token-text-primary mx-auto flex h-full w-full flex-col items-center justify-center gap-2 pb-2 text-sm">
+            <LoaderSpinner />
+          </div>
+        )}
       </div>
     </div>
   )

@@ -1,4 +1,4 @@
-import { appAuth, appFirestore } from '@/lib/firebase'
+
 import { Link } from '@inertiajs/react'
 import {
   signInWithPopup,
@@ -9,6 +9,8 @@ import {
 import { addDoc, collection, doc, setDoc } from 'firebase/firestore'
 import { useState } from 'react'
 import Loader from './LoaderComp'
+import LoaderSpinner from './Loader-Comp'
+import { appAuth, appFirestore } from '@/pages/lib/firebase'
 
 export default function SignupScreen() {
   const [formData, setFormData] = useState({
@@ -18,6 +20,7 @@ export default function SignupScreen() {
   })
   const [warning, setWarning] = useState('')
   const [checking, setChecking] = useState(false)
+  const [googleAuth, setGoogleAuth] = useState(false)
   const [agreement, setAgreement] = useState(false)
 
   const signupByPassword = (e) => {
@@ -55,26 +58,34 @@ export default function SignupScreen() {
   }
 
   const popupGoogle = async () => {
+    setGoogleAuth(true)
     if (agreement) {
       const provider = new GoogleAuthProvider()
       signInWithPopup(appAuth, provider)
         .then(async (result) => {
           const credential = GoogleAuthProvider.credentialFromResult(result)
-          const token = credential.accessToken
           const user = result.user
           await setDoc(doc(appFirestore, 'USERS', user.email), {
             name: user.displayName,
             email: user.email,
             photoURL: user.photoURL,
           })
+          setChecking(false)
         })
         .catch((error) => {
-          const errorCode = error.code
           const errorMessage = error.message
           const email = error.customData.email
           const credential = GoogleAuthProvider.credentialFromError(error)
+          setGoogleAuth(false)
+          setWarning(
+            'Unable to create account. Please try again with a different email.'
+          )
+          setTimeout(() => {
+            setWarning('')
+          }, 3000)
         })
     } else {
+      setGoogleAuth(false)
       setWarning('Please agree to terms of service before creating an account.')
       setTimeout(() => {
         setWarning('')
@@ -136,10 +147,14 @@ export default function SignupScreen() {
         <div className="w-full">
           <button
             type="submit"
-            className="flex w-full items-center justify-center space-x-3 bg-blue-600 p-3 text-white hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-100 dark:hover:shadow-gray-800"
+            disabled={checking}
+            className={
+              checking
+                ? 'flex w-full items-center justify-center space-x-3 bg-gray-500 p-3 text-white hover:shadow-lg hover:shadow-blue-100 dark:hover:shadow-gray-800'
+                : 'flex w-full items-center justify-center space-x-3 bg-blue-600 p-3 text-white hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-100 dark:hover:shadow-gray-800'
+            }
           >
-            <Loader checker={checking} />
-            <span>Sign up</span>
+            {checking ? <LoaderSpinner /> : <span>Sign up</span>}
           </button>
           <span className="flex justify-center space-x-2 text-sm">
             <span>Already have an account? </span>
@@ -162,17 +177,24 @@ export default function SignupScreen() {
           onClick={() => {
             popupGoogle()
           }}
+          disabled={googleAuth}
           className="flex w-full justify-center space-x-12 border border-blue-400/10 bg-white p-3 text-black hover:bg-blue-100 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-700"
         >
-          <span></span>
-          <img
-            alt="Google Logo"
-            width={25}
-            height={25}
-            src={'/images/google_logo.png'}
-          />
-          <span className="text-gray-400">Sign in with Google</span>
-          <span></span>
+          {googleAuth ? (
+            <LoaderSpinner />
+          ) : (
+            <>
+              <span></span>
+              <img
+                alt="Google Logo"
+                width={25}
+                height={25}
+                src={'/images/google_logo.png'}
+              />
+              <span className="text-gray-400">Sign in with Google</span>
+              <span></span>
+            </>
+          )}
         </button>
         <div className="mt-2 flex items-start justify-start space-x-3">
           <input

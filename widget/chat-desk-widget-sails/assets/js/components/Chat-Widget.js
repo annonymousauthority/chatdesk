@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import ChatScreen from './ChatScreen'
 import { doc, setDoc } from 'firebase/firestore'
-import { appFirestore } from '@/config/firebase'
 import { ChevronDownIcon } from '@heroicons/react/24/solid'
+import { appFirestore } from '@/components/lib/firebase'
 export default function ChatWidget({ agentConfig, id, agentKey }) {
   const [loadChat, setLoadChat] = useState(false)
   const [view, setView] = useState(0)
@@ -17,6 +17,10 @@ export default function ChatWidget({ agentConfig, id, agentKey }) {
       doc(appFirestore, `USERS/${id}/${agentKey}`, `Chat-by-${customer.email}`),
       {
         chat: [],
+        email: customer.email,
+        name: customer.name,
+        feedback: 0,
+        feedback_comment: '',
       }
     )
     setInSession(true)
@@ -26,7 +30,7 @@ export default function ChatWidget({ agentConfig, id, agentKey }) {
     switch (view) {
       case 0:
         return (
-          <div className="absolute bottom-0 right-0 z-50 m-12 mb-28 flex flex-col rounded-2xl border-2 border-blue-300 bg-gradient-to-b from-blue-600 via-blue-500 to-white px-8 shadow-xl shadow-blue-100 transition-transform delay-75 duration-300 ease-in-out lg:h-[75%] lg:w-[380px]">
+          <div className="flex flex-col rounded-2xl border-2 border-blue-300 bg-gradient-to-b from-blue-600 via-blue-500 to-white px-8 shadow-xl shadow-blue-100 transition-transform delay-75 duration-300 ease-in-out lg:h-[500px] lg:w-[380px]">
             <div className="mt-12 flex w-full flex-col text-3xl font-bold text-white">
               <span>Hello ❤️</span>
               <span>How can we help?</span>
@@ -124,7 +128,7 @@ export default function ChatWidget({ agentConfig, id, agentKey }) {
         )
       case 1:
         return (
-          <div className="absolute bottom-0 right-0 z-50 m-12 mb-28 flex flex-col rounded-2xl border-2 border-blue-300 bg-gradient-to-b from-blue-600 via-blue-500 to-white shadow-xl shadow-blue-100 lg:h-[75%] lg:w-[380px]">
+          <div className="flex flex-col rounded-2xl border-2 border-blue-300 bg-gradient-to-b from-blue-600 via-blue-500 to-white shadow-xl shadow-blue-100 lg:h-[500px] lg:w-[380px]">
             <div className="flex h-full w-full flex-col items-start justify-start overflow-y-auto px-4">
               <div className="mt-12 flex w-full flex-col items-start justify-start text-left text-white">
                 <span className="w-full text-xl font-semibold">
@@ -234,7 +238,7 @@ export default function ChatWidget({ agentConfig, id, agentKey }) {
         )
       case 2:
         return (
-          <div className="absolute bottom-0 right-0 z-50 m-12 mb-28 flex flex-col rounded-xl border-2 border-blue-300 bg-blue-100 to-white px-8 shadow-xl shadow-blue-100 lg:h-[75%] lg:w-[380px]">
+          <div className=" flex flex-col rounded-xl border-2 border-blue-300 bg-blue-100 to-white px-8 shadow-xl shadow-blue-100 lg:h-[500px] lg:w-[380px]">
             <div className="h-full w-full overflow-y-auto">
               <ChatScreen
                 customer={customer}
@@ -273,7 +277,7 @@ export default function ChatWidget({ agentConfig, id, agentKey }) {
     }
   } else {
     return (
-      <div className="absolute bottom-0 right-0 z-50 m-12">
+      <div>
         <button
           onClick={() => setLoadChat(!loadChat)}
           className="delay-75 duration-300 hover:scale-110 hover:transition-transform"

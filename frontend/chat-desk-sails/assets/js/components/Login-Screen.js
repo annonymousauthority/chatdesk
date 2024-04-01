@@ -1,4 +1,3 @@
-import { appAuth } from '@/lib/firebase'
 import { Link, router } from '@inertiajs/react'
 import {
   GoogleAuthProvider,
@@ -8,6 +7,8 @@ import {
 } from 'firebase/auth'
 import { useEffect, useState } from 'react'
 import Loader from './LoaderComp'
+import LoaderSpinner from './Loader-Comp'
+import { appAuth } from '@/pages/lib/firebase'
 
 export default function LoginScreen() {
   const [formData, setFormData] = useState({
@@ -91,10 +92,14 @@ export default function LoginScreen() {
         <div className="w-full">
           <button
             type="submit"
-            className="flex w-full items-center justify-center space-x-3 bg-blue-600 p-3 text-white hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-100 dark:hover:shadow-gray-800"
+            disabled={checking}
+            className={
+              checking
+                ? 'flex w-full items-center justify-center space-x-3 bg-gray-500 p-3 text-white hover:shadow-lg hover:shadow-blue-100 dark:hover:shadow-gray-800'
+                : 'flex w-full items-center justify-center space-x-3 bg-blue-600 p-3 text-white hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-100 dark:hover:shadow-gray-800'
+            }
           >
-            <Loader checker={checking} />
-            <span>Sign in</span>
+            {checking ? <LoaderSpinner /> : <span>Sign in</span>}
           </button>
           <span className="flex justify-center space-x-2 text-sm">
             <span>{"Don't"} have an account? </span>

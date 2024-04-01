@@ -2,7 +2,7 @@ import { Link } from '@inertiajs/react'
 
 export default function Footer() {
   return (
-    <div className="absolute bottom-0 left-0 mt-24 flex min-h-[155px] w-full items-center justify-center border border-gray-200 bg-[#ffffff] p-3 text-white dark:bg-gray-900 dark:text-white dark:border-gray-800">
+    <div className="absolute bottom-0 left-0 mt-24 flex min-h-[155px] w-full items-center justify-center border border-gray-200 bg-[#ffffff] p-3 text-white dark:bg-gray-900 dark:text-white dark:border-gray-800 z-30">
       <div className="flex w-full items-start justify-between">
         <div className="hidden lg:block lg:w-1/4"></div>
         <div className="w-1/4">

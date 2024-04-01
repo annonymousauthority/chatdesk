@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { appFirestore } from '@/config/firebase'
+import { appFirestore } from '@/components/lib/firebase'
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 export default function ChatScreen({
@@ -104,7 +104,9 @@ export default function ChatScreen({
             return (
               <div key={i} className="flex w-full justify-start">
                 <div className="flex w-3/4 flex-wrap justify-start rounded-xl bg-green-100 p-3 text-sm font-light text-gray-600">
-                  <span className="flex w-full flex-wrap text-sm">{e.message}</span>
+                  <span className="flex-wrap break-word flex w-full text-sm">
+                    {e.message}
+                  </span>
                 </div>
               </div>
             )
@@ -113,7 +115,9 @@ export default function ChatScreen({
             return (
               <div key={i} className="flex w-full flex-wrap justify-end">
                 <div className="flex w-3/4 flex-wrap justify-end rounded-xl bg-pink-100 p-3 text-sm font-light text-gray-600">
-                  <span className="flex w-full flex-wrap text-sm">{e.message}</span>
+                  <span className=" break-word w-full flex-wrap text-sm">
+                    {e.message}
+                  </span>
                 </div>
               </div>
             )

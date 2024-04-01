@@ -1,5 +1,6 @@
 import ChatWidget from '@/components/Chat-Widget'
-import { appFirestore } from '@/config/firebase'
+import ChatWidgetContainer from '@/components/ChatWidgetContainer'
+import { appFirestore } from '@/components/lib/firebase'
 import {
   collection,
   doc,
@@ -43,7 +44,13 @@ export default function Index({ agentKey }) {
   } else {
     return (
       <div className="relative h-screen">
-        <ChatWidget agentConfig={agentConfig} id={userID} agentKey={agentKey} />
+        <ChatWidgetContainer>
+          <ChatWidget
+            agentConfig={agentConfig}
+            id={userID}
+            agentKey={agentKey}
+          />
+        </ChatWidgetContainer>
       </div>
     )
   }

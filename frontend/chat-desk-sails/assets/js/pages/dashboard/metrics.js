@@ -1,9 +1,82 @@
+import FeedBack404 from '@/components/FeedBack404'
+import LoaderSpinner from '@/components/Loader-Comp'
+import { StarIcon } from '@heroicons/react/20/solid'
 import {
   ChatBubbleBottomCenterIcon,
-  StarIcon,
+  TrashIcon,
 } from '@heroicons/react/24/outline'
+import { collection, doc, getDocs } from 'firebase/firestore'
+import { useEffect, useState } from 'react'
+import { appFirestore } from '../lib/firebase'
 
-export default function MetricsPage() {
+export default function MetricsPage({ user }) {
+  const [isLoading, setIsLoading] = useState(true)
+  const [agent, setAgent] = useState(null)
+  const [chatSessions, setChatSessions] = useState(0)
+  const [agentData, setAgentData] = useState({
+    rating: 0,
+    feedback_count: 0,
+  })
+  const [feedbackHistory, setFeedbackHistory] = useState(null)
+
+  function timestampToDate(timestamp) {
+    const date = new Date(timestamp)
+    const day = String(date.getDate()).padStart(2, '0')
+    const month = String(date.getMonth() + 1).padStart(2, '0') // Month is zero-indexed, so we add 1
+    const year = date.getFullYear()
+
+    return `${day}/${month}/${year}`
+  }
+
+  useEffect(() => {
+    ;(async () => {
+      console.log(new Date().getTime())
+      let agent = []
+      let history = []
+      let count = 0
+      let feedback_count = 0
+      let rating_count = 0
+      const userDocRef = doc(appFirestore, 'USERS', user.email)
+      const agentCollectionRef = collection(userDocRef, user.agent_key)
+
+      const qSnap = await getDocs(agentCollectionRef)
+
+      qSnap.forEach((doc) => {
+        if (doc.id === 'config') {
+          agent.push(doc.data())
+        } else {
+          if (doc.data().feedback > 0) {
+            history.push({
+              id: doc.id,
+              rating: doc.data().feedback,
+              comment: doc.data().feedback_comment,
+              name: doc.data().name,
+            })
+            feedback_count++
+            let rc = rating_count
+            rc += doc.data().feedback
+            rating_count = Math.floor(rc / feedback_count)
+          }
+          count++
+        }
+      })
+      if (history.length > 6) {
+        setFeedbackHistory(history.slice(0, 6))
+      } else {
+        setFeedbackHistory(history)
+      }
+      setAgentData({
+        ...agentData,
+        rating: rating_count,
+        feedback_count: feedback_count,
+      })
+      setChatSessions(count)
+      setAgent(agent)
+      setTimeout(() => {
+        setIsLoading(false)
+      }, 500)
+    })()
+  }, [])
   return (
     <div>
       <h1 className="text-2xl font-bold">Usage Report</h1>
@@ -12,14 +85,16 @@ export default function MetricsPage() {
           <ChatBubbleBottomCenterIcon className="h-6 w-6" />
           <div className="flex flex-col items-start justify-start text-left">
             <span className="text-base text-gray-500">Chat Session</span>
-            <span className="text-xl font-semibold">0</span>
+            <span className="text-xl font-semibold">{chatSessions}</span>
           </div>
         </div>
         <div className=" flex w-1/3 items-start justify-start space-x-4 rounded-xl border border-gray-200 p-6">
           <StarIcon className="h-6 w-6" />
           <div className="flex flex-col items-start justify-start text-left">
             <span className="text-base text-gray-500">Feedback</span>
-            <span className="text-xl font-semibold">0</span>
+            <span className="text-xl font-semibold">
+              {agentData.feedback_count}
+            </span>
           </div>
         </div>
         <div className=" flex w-1/3 items-start justify-start space-x-4 rounded-xl border border-gray-200 p-6">
@@ -54,23 +129,105 @@ export default function MetricsPage() {
             />
           </svg>
           <div className="flex flex-col items-start justify-start text-left">
-            <span className="text-base text-gray-500">Agents</span>
-            <span className="text-xl font-semibold">0</span>
+            <span className="text-base text-gray-500">Rating</span>
+            <span className="text-xl font-semibold">{agentData.rating}</span>
           </div>
         </div>
       </div>
       <div className="mt-6 flex flex-col items-start justify-start space-y-3 lg:mt-12">
-        <span className="text-xl font-semibold text-gray-600">Top Agent</span>
-        <div className="mx-auto mt-4 text-center font-bold text-gray-400">
-          You haven't yet added an agent.
+        <span className="text-xl font-semibold text-gray-600">
+          Active Agent
+        </span>
+        <div className="flex w-full items-start justify-start">
+          {!isLoading ? (
+            <div className="mt-6 flex w-full items-center justify-center lg:w-1/2">
+              {agent != null ? (
+                <div className="flex h-full w-full flex-col items-start justify-start rounded-xl border border-gray-200 bg-gray-100 p-3 shadow-lg shadow-gray-200 dark:bg-gray-800">
+                  <div className="flex w-full items-center justify-between">
+                    <span className="text-xl font-semibold text-black dark:text-white">
+                      {agent[0].name}
+                    </span>
+                  </div>
+                  <div className="mt-6 flex w-full items-end justify-between">
+                    <div className="flex flex-col items-start justify-start text-sm text-gray-500">
+                      <span>Total Chat Sessions: {chatSessions}</span>
+                      <span>Star Rating: {agentData.rating}</span>
+                      <span>Feedback Count: {agentData.feedback_count}</span>
+                    </div>
+                    <div className="flex flex-col items-start justify-start text-sm font-light text-gray-500">
+                      <span>Deployed Date:</span>
+                      <span>{timestampToDate(agent[0].deployed_date)}</span>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <span className="text-center font-bold text-gray-400">
+                  You don't have any active agent
+                </span>
+              )}
+            </div>
+          ) : (
+            <div className="text-token-text-primary mx-auto flex h-full w-full flex-col items-center justify-center gap-2 pb-2 text-sm">
+              <LoaderSpinner />
+            </div>
+          )}
         </div>
       </div>
       <div className="mt-6 flex flex-col items-start justify-start space-y-3 lg:mt-12">
         <span className="text-xl font-semibold text-gray-600">
           Agent Feedbacks
         </span>
-        <div className="mx-auto mt-4 text-center font-bold text-gray-400">
-          Your agents don't have feedback yet.
+        <div className="mt-6 flex items-center justify-start">
+          {!isLoading ? (
+            <div className="w-full">
+              {feedbackHistory != null ? (
+                <div className="flex flex-wrap gap-2">
+                  {feedbackHistory.map((e, i) => {
+                    return (
+                      <div
+                        key={i}
+                        className={`flex h-full w-1/2 flex-col items-center justify-start rounded-xl p-3 ${
+                          i % 2 === 0 ? 'bg-pink-500' : 'bg-blue-500'
+                        }`}
+                      >
+                        <span className="text-sm font-semibold text-white">
+                          {e.comment}
+                        </span>
+                        <div className="mt-3 flex w-full items-center justify-between">
+                          <span className="text-sm font-light text-gray-100">
+                            {e.name}
+                          </span>
+                          <div className="flex items-center justify-start">
+                            {Array.from({ length: e.rating }, (_, index) => (
+                              <StarIcon
+                                key={index}
+                                className="h-6 w-6 text-yellow-500"
+                              />
+                            ))}
+                            {Array.from(
+                              { length: 5 - e.rating },
+                              (_, index) => (
+                                <StarIcon
+                                  key={index}
+                                  className="h-6 w-6 text-gray-100"
+                                />
+                              )
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              ) : (
+                <FeedBack404 />
+              )}
+            </div>
+          ) : (
+            <div className="text-token-text-primary mx-auto flex h-full w-full flex-col items-center justify-center gap-2 pb-2 text-sm">
+              <LoaderSpinner />
+            </div>
+          )}
         </div>
       </div>
     </div>
