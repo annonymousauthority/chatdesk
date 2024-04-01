@@ -44,11 +44,7 @@ export default function ChatHistoryPage({ user }) {
           chats={chats}
         />
       )}
-      <iframe
-        src="https://chatdesk-widget.onrender.com/?agentKey=Ax13g_nih0ld"
-        className="absolute bottom-0 right-0 z-20 h-full w-full"
-      ></iframe>
-      <div className="relativeflex h-full flex-col items-start justify-start p-6 pt-0">
+      <div className="relative flex z-20 h-full flex-col items-start justify-start p-6 pt-0">
         <div className="flex flex-col items-start justify-start">
           <h1 className="text-4xl font-bold text-gray-600 dark:text-gray-200">
             Chat History

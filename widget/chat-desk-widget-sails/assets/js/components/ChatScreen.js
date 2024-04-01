@@ -103,8 +103,8 @@ export default function ChatScreen({
           if (e.sender == 'ai') {
             return (
               <div key={i} className="flex w-full justify-start">
-                <div className="flex w-3/4 flex-wrap justify-start rounded-xl bg-green-100 p-3 text-sm font-light text-gray-600">
-                  <span className="flex-wrap break-word flex w-full text-sm">
+                <div className="w-3/4 rounded-xl bg-green-100 p-3 text-sm font-light text-gray-600">
+                  <span className="flex w-full flex-wrap break-words text-sm">
                     {e.message}
                   </span>
                 </div>

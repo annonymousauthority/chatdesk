@@ -48,7 +48,7 @@ export default function DashboardLayout({ children }) {
   } else {
     return (
       <main className="inter-chat-desk relative flex min-h-screen flex-col overflow-hidden">
-        <nav className=" mx-auto w-full z-30">
+        <nav className=" z-30 mx-auto w-full">
           <div className="mx-auto flex  max-w-6xl items-center justify-between">
             <img
               src="/images/logo_chat_desk.png"
@@ -168,8 +168,10 @@ export default function DashboardLayout({ children }) {
             </article>
           </div>
         </div>
-        {/* http://localhost:3001/?agentKey=Ax13g_nih0ld */}
-
+        <iframe
+          src="https://chatdesk-widget.onrender.com/?agentKey=Ax13g_nih0ld"
+          className="absolute bottom-0 right-0 z-30 h-full w-full"
+        ></iframe>
         <Footer />
       </main>
     )
