@@ -104,7 +104,7 @@ export default function ChatScreen({
             return (
               <div key={i} className="flex w-full justify-start">
                 <div className="w-3/4 rounded-xl bg-green-100 p-3 text-sm font-light text-gray-600">
-                  <span className="flex w-full flex-wrap break-words text-sm">
+                  <span className="flex flex-wrap break-words text-sm">
                     {e.message}
                   </span>
                 </div>
@@ -114,8 +114,8 @@ export default function ChatScreen({
           if (e.sender == 'user') {
             return (
               <div key={i} className="flex w-full flex-wrap justify-end">
-                <div className="flex w-3/4 flex-wrap justify-end rounded-xl bg-pink-100 p-3 text-sm font-light text-gray-600">
-                  <span className=" break-word w-full flex-wrap text-sm">
+                <div className="w-3/4 rounded-xl bg-pink-100 p-3 text-sm font-light text-gray-600">
+                  <span className="break-word flex-wrap text-sm">
                     {e.message}
                   </span>
                 </div>

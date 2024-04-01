@@ -280,7 +280,7 @@ export default function ChatWidget({ agentConfig, id, agentKey }) {
       <div>
         <button
           onClick={() => setLoadChat(!loadChat)}
-          className="delay-75 duration-300 hover:scale-110 hover:transition-transform"
+          className="delay-75 duration-300 hover:scale-110 hover:transition-transform -bottom-10"
         >
           <img
             alt="Widget Icon"

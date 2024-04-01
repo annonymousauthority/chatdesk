@@ -43,7 +43,7 @@ export default function Index({ agentKey }) {
     return <></>
   } else {
     return (
-      <div className="relative h-screen">
+      <div className="relative">
         <ChatWidgetContainer>
           <ChatWidget
             agentConfig={agentConfig}
