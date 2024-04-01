@@ -48,7 +48,7 @@ export default function DashboardLayout({ children }) {
   } else {
     return (
       <main className="inter-chat-desk relative flex min-h-screen flex-col overflow-hidden">
-        <nav className=" mx-auto w-full">
+        <nav className=" mx-auto w-full z-30">
           <div className="mx-auto flex  max-w-6xl items-center justify-between">
             <img
               src="/images/logo_chat_desk.png"
@@ -82,9 +82,9 @@ export default function DashboardLayout({ children }) {
             </div>
           </div>
         </nav>
-        <div className="mt-24 min-h-screen w-full overflow-auto pb-64">
+        <div className="mt-24 min-h-screen w-full overflow-auto pb-32 ">
           <div className="mx-auto flex max-w-6xl items-start justify-start">
-            <div className="flex h-full w-[15%] flex-col items-start justify-start space-y-12 overflow-y-hidden">
+            <div className="z-30 flex h-full w-[15%] flex-col items-start justify-start space-y-12 overflow-y-hidden">
               <div className="flex flex-col items-start justify-start space-y-6">
                 <span className="text-2xl font-bold">Agents</span>
                 <ul className="flex flex-col items-start justify-start space-y-3 text-sm font-light">
@@ -169,7 +169,7 @@ export default function DashboardLayout({ children }) {
           </div>
         </div>
         {/* http://localhost:3001/?agentKey=Ax13g_nih0ld */}
-      
+
         <Footer />
       </main>
     )

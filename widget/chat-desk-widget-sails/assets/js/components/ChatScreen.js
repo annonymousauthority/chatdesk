@@ -77,7 +77,7 @@ export default function ChatScreen({
         uchat.push(ai_chat)
         setChats(uchat)
         await updateDoc(chatRef, {
-          chat: arrayUnion(chat),
+          chat: arrayUnion(ai_chat),
         })
       })
       .catch((error) => {
