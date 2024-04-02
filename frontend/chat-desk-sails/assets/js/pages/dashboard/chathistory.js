@@ -44,7 +44,7 @@ export default function ChatHistoryPage({ user }) {
           chats={chats}
         />
       )}
-      <div className="relative flex z-20 h-full flex-col items-start justify-start p-6 pt-0">
+      <div className="relative z-20 flex h-full flex-col items-start justify-start p-6 pt-0">
         <div className="flex flex-col items-start justify-start">
           <h1 className="text-4xl font-bold text-gray-600 dark:text-gray-200">
             Chat History
@@ -54,14 +54,14 @@ export default function ChatHistoryPage({ user }) {
           </p>
         </div>
         {!isLoading ? (
-          <div className="mx-auto w-full lg:w-[80%]">
+          <div className=" w-full overflow-y-auto">
             {chatHistory != null ? (
-              <div className="scrollbar-hide mt-8 flex h-[80vh] w-full flex-col space-y-4 overflow-y-auto px-6">
+              <div className="mt-8 flex w-full flex-wrap gap-2 overflow-y-auto">
                 {chatHistory.map((e, i) => {
                   return (
                     <div
                       key={e.id}
-                      className="hover:bg-gray-gray-200 flex h-[150px] w-full flex-col items-start justify-between rounded-xl border border-gray-200 bg-white p-6 py-3 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-700 dark:shadow-gray-800 dark:hover:bg-gray-800"
+                      className="hover:bg-gray-gray-200 flex h-[150px] w-1/3 flex-col items-start justify-between rounded-xl border border-gray-200 bg-white p-6 py-3 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-700 dark:shadow-gray-800 dark:hover:bg-gray-800"
                     >
                       <div className="flex w-full items-start justify-between">
                         <div className="flex flex-col items-start justify-start">

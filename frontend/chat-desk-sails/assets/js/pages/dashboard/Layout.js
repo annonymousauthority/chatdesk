@@ -47,7 +47,7 @@ export default function DashboardLayout({ children }) {
     )
   } else {
     return (
-      <main className="inter-chat-desk relative flex min-h-screen flex-col overflow-hidden">
+      <main className="inter-chat-desk relative flex h-full flex-col overflow-hidden">
         <nav className=" z-30 mx-auto w-full">
           <div className="mx-auto flex  max-w-6xl items-center justify-between">
             <img
@@ -82,7 +82,7 @@ export default function DashboardLayout({ children }) {
             </div>
           </div>
         </nav>
-        <div className="mt-24 min-h-screen w-full overflow-auto pb-32 ">
+        <div className="mt-24 h-screen w-full overflow-auto pb-32 ">
           <div className="mx-auto flex max-w-6xl items-start justify-start">
             <div className="z-30 flex h-full w-[15%] flex-col items-start justify-start space-y-12 overflow-y-hidden">
               <div className="flex flex-col items-start justify-start space-y-6">
@@ -163,14 +163,15 @@ export default function DashboardLayout({ children }) {
                 </ul>
               </div>
             </div>
-            <article className="w-[85%] overflow-hidden lg:ml-8">
+            <article className="mb-32 w-[85%] overflow-hidden lg:ml-8">
               {React.cloneElement(children, { user, profileConfig })}
             </article>
           </div>
         </div>
+        {/* https://chatdesk-widget.onrender.com/?agentKey=Ax13g_nih0ld */}
         <iframe
-          src="https://chatdesk-widget.onrender.com/?agentKey=Ax13g_nih0ld"
-          className="absolute bottom-0 right-0 z-30 h-full w-full"
+          src="http://localhost:3001/?agentKey=Ax13g_nih0ld"
+          className="absolute bottom-0 right-0 z-[999] bg-transparent bg-opacity-0 w-[680px] h-[75vh]"
         ></iframe>
         <Footer />
       </main>

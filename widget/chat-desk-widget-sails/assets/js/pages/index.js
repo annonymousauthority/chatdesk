@@ -15,6 +15,7 @@ export default function Index({ agentKey }) {
   const [agentConfig, setagentConfig] = useState(null)
   const [userID, setuserID] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [minimized, setMinimized] = useState(false)
   useEffect(() => {
     if (agentConfig == null) {
       ;(async () => {
@@ -39,16 +40,20 @@ export default function Index({ agentKey }) {
       setLoading(false)
     }
   }, [agentConfig])
+  const onButtonMinimize = (state) => {
+    setMinimized(state)
+  }
   if (loading) {
     return <></>
   } else {
     return (
-      <div className="relative">
+      <div className="relative ">
         <ChatWidgetContainer>
           <ChatWidget
             agentConfig={agentConfig}
             id={userID}
             agentKey={agentKey}
+            onMinimize={onButtonMinimize}
           />
         </ChatWidgetContainer>
       </div>

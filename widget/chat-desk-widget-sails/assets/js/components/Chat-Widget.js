@@ -3,7 +3,7 @@ import ChatScreen from './ChatScreen'
 import { doc, setDoc } from 'firebase/firestore'
 import { ChevronDownIcon } from '@heroicons/react/24/solid'
 import { appFirestore } from '@/components/lib/firebase'
-export default function ChatWidget({ agentConfig, id, agentKey }) {
+export default function ChatWidget({ agentConfig, id, agentKey, onMinimize }) {
   const [loadChat, setLoadChat] = useState(false)
   const [view, setView] = useState(0)
   const [customer, setCustomer] = useState({
@@ -30,7 +30,7 @@ export default function ChatWidget({ agentConfig, id, agentKey }) {
     switch (view) {
       case 0:
         return (
-          <div className="flex flex-col rounded-2xl border-2 border-blue-300 bg-gradient-to-b from-blue-600 via-blue-500 to-white px-8 shadow-xl shadow-blue-100 transition-transform delay-75 duration-300 ease-in-out lg:h-[500px] lg:w-[380px]">
+          <div className="flex h-[700px] w-[480px] flex-col rounded-2xl border-2 border-blue-300 bg-gradient-to-b from-blue-600 via-blue-500 to-white px-8 shadow-xl shadow-blue-100 transition-transform delay-75 duration-300 ease-in-out">
             <div className="mt-12 flex w-full flex-col text-3xl font-bold text-white">
               <span>Hello ❤️</span>
               <span>How can we help?</span>
@@ -115,7 +115,10 @@ export default function ChatWidget({ agentConfig, id, agentKey }) {
               </span>
             </div>
             <button
-              onClick={() => setLoadChat(!loadChat)}
+              onClick={() => {
+                setLoadChat(!loadChat)
+                onMinimize(!loadChat)
+              }}
               className={
                 loadChat
                   ? 'absolute -bottom-14 right-0 h-10 w-10 rotate-[360deg] rounded-full bg-blue-500 transition-transform delay-75 duration-300 hover:scale-110 hover:transition-transform'
@@ -128,7 +131,7 @@ export default function ChatWidget({ agentConfig, id, agentKey }) {
         )
       case 1:
         return (
-          <div className="flex flex-col rounded-2xl border-2 border-blue-300 bg-gradient-to-b from-blue-600 via-blue-500 to-white shadow-xl shadow-blue-100 lg:h-[500px] lg:w-[380px]">
+          <div className="flex h-[700px] w-[480px] flex-col rounded-2xl border-2 border-blue-300 bg-gradient-to-b from-blue-600 via-blue-500 to-white shadow-xl shadow-blue-100">
             <div className="flex h-full w-full flex-col items-start justify-start overflow-y-auto px-4">
               <div className="mt-12 flex w-full flex-col items-start justify-start text-left text-white">
                 <span className="w-full text-xl font-semibold">
@@ -220,7 +223,10 @@ export default function ChatWidget({ agentConfig, id, agentKey }) {
               </span>
             </div>
             <button
-              onClick={() => setLoadChat(!loadChat)}
+              onClick={() => {
+                setLoadChat(!loadChat)
+                onMinimize(!loadChat)
+              }}
               className={
                 loadChat
                   ? 'absolute -bottom-10 right-0 rotate-[360deg] transition-transform delay-75 duration-300 hover:scale-110 hover:transition-transform'
@@ -238,7 +244,7 @@ export default function ChatWidget({ agentConfig, id, agentKey }) {
         )
       case 2:
         return (
-          <div className=" flex flex-col rounded-xl border-2 border-blue-300 bg-blue-100 to-white px-8 shadow-xl shadow-blue-100 lg:h-[500px] lg:w-[380px]">
+          <div className=" flex h-[700px] w-[480px] flex-col rounded-xl border-2 border-blue-300 bg-blue-100 to-white px-8 shadow-xl shadow-blue-100">
             <div className="h-full w-full overflow-y-auto">
               <ChatScreen
                 customer={customer}
@@ -256,7 +262,10 @@ export default function ChatWidget({ agentConfig, id, agentKey }) {
               />
             </div>
             <button
-              onClick={() => setLoadChat(!loadChat)}
+              onClick={() => {
+                setLoadChat(!loadChat)
+                onMinimize(!loadChat)
+              }}
               className={
                 loadChat
                   ? 'absolute -bottom-10 right-0 rotate-[360deg] transition-transform delay-75 duration-300 hover:scale-110 hover:transition-transform'
@@ -279,8 +288,12 @@ export default function ChatWidget({ agentConfig, id, agentKey }) {
     return (
       <div>
         <button
-          onClick={() => setLoadChat(!loadChat)}
-          className="delay-75 duration-300 hover:scale-110 hover:transition-transform -bottom-10"
+          id="loadChatButton"
+          onClick={() => {
+            setLoadChat(!loadChat)
+            onMinimize(!loadChat)
+          }}
+          className="-bottom-10 delay-75 duration-300 hover:scale-110 hover:transition-transform"
         >
           <img
             alt="Widget Icon"
