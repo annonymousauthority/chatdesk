@@ -22,7 +22,7 @@ export default function LayoutWrapper({ children }) {
       <>
         <main className="inter-chat-desk relative">
           <nav className="mx-auto mt-3 w-full p-2">
-            <div className="mx-auto flex flex-wrap gap-2 max-w-6xl items-center justify-between">
+            <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2">
               <div>
                 <Link href="/">
                   <img
@@ -62,7 +62,7 @@ export default function LayoutWrapper({ children }) {
               <div>
                 <Link
                   href="/login"
-                  className="w-[250px] hidden lg:block rounded-xl bg-blue-600 p-3 text-white hover:bg-blue-700 hover:shadow-sm hover:shadow-blue-600/50"
+                  className="hidden w-[250px] text-center rounded-xl bg-blue-600 p-3 text-white hover:bg-blue-700 hover:shadow-sm hover:shadow-blue-600/50 lg:block"
                 >
                   Signin
                 </Link>

@@ -69,7 +69,7 @@ export default function PricingPage() {
           </div>
         </div>
       </div>
-      <div className="mt-6 w-full lg:mt-20">
+      <div className="mt-6 w-full lg:mb-44 lg:mt-20">
         <div className="mx-auto flex max-w-6xl flex-wrap items-start justify-center gap-2 space-x-2">
           <div className="flex min-h-[400px] w-full flex-col items-center justify-between space-y-8 rounded-[21px] border border-gray-200 p-4 shadow-lg shadow-gray-100 lg:w-1/4 2xl:w-1/5 dark:border-gray-500 dark:shadow-gray-800">
             <div className="flex flex-col items-center justify-start space-y-4">
