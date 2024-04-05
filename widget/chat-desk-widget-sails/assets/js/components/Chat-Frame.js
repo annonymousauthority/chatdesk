@@ -41,8 +41,8 @@ export default function ChatFrame({ agentKey }) {
     }
   }, [agentConfig])
   return (
-    <div className="mx-auto flex h-[700px] min-h-full  w-3/4 max-w-[1200px] items-start justify-center rounded-2xl border">
-      <div className="hidden h-full w-1/2 flex-col items-start justify-between bg-white lg:flex">
+    <div className="mx-auto flex h-[700px] min-h-full w-full lg:w-3/4 max-w-[1200px] items-start justify-center rounded-2xl border">
+      <div className="hidden h-full w-1/2 flex-col items-start justify-between rounded-tl-2xl bg-white lg:flex">
         <div className="h-[65px] w-full rounded-tl-2xl bg-gray-700"></div>
         <div className="h-65 flex w-full items-center justify-center space-x-3 rounded-xl py-6">
           <img

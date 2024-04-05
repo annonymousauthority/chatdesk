@@ -2,10 +2,10 @@ import { Link } from '@inertiajs/react'
 
 export default function Footer() {
   return (
-    <div className="absolute bottom-0 left-0 z-10 mt-24 flex min-h-[155px] w-full items-center justify-center border border-gray-200 bg-[#ffffff] p-3 text-white dark:border-gray-800 dark:bg-gray-900 dark:text-white">
+    <div className="absolute bottom-0 left-0 z-10 mt-24 flex min-h-[155px] w-full items-center border border-gray-200 bg-[#ffffff] p-3 text-white lg:justify-between dark:border-gray-800 dark:bg-gray-900 dark:text-white">
       <div className="flex w-full items-start justify-between">
         <div className="hidden lg:block lg:w-1/4"></div>
-        <div className="w-1/4">
+        <div className="w-1/2 lg:w-1/4">
           <div>
             <Link href="/">
               <img
@@ -26,7 +26,7 @@ export default function Footer() {
             </small>
           </div>
         </div>
-        <div className="flex w-1/4 items-start justify-between">
+        <div className="flex w-1/2 items-start justify-between lg:w-1/4">
           <div className="w-1/2">
             <span className="text-lg font-semibold text-gray-600 dark:text-gray-300">
               Solution
@@ -60,7 +60,7 @@ export default function Footer() {
           </div>
           <div className="w-1/2">
             <span className="text-lg font-semibold text-gray-600 dark:text-gray-300">
-              About Chat Desk
+              Company
             </span>
             <ul className="flex flex-col items-start justify-start text-xs font-light text-black lg:text-sm dark:text-gray-300">
               <Link
@@ -84,7 +84,7 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <div className="w-1/4"></div>
+        <div className="hidden lg:block lg:w-1/4"></div>
       </div>
     </div>
   )

@@ -14,14 +14,14 @@ export default function PricingPage() {
     enterprise: [`Let's Talk`],
   })
   return (
-    <div className="relative mx-auto mt-16 flex h-full flex-col items-center justify-start pb-44">
+    <div className="relative mx-auto mt-16 flex h-full flex-col items-center justify-start p-6 pb-44 lg:p-0">
       <div className="mx-auto max-w-6xl">
         <div className="w-full space-y-3">
-          <h1 className="mt-3 text-center text-6xl font-bold">
+          <h1 className="mt-3 text-center text-3xl font-bold lg:text-6xl">
             Increase Customer Conversion <br />
             with Quick chat Response
           </h1>
-          <p className="mx-auto w-1/2 text-center text-sm font-light">
+          <p className="mx-auto w-full text-center text-sm font-light lg:w-1/2">
             Start by deploying a agent for general inquiries, and upgrade as you
             need.
           </p>
@@ -177,7 +177,7 @@ export default function PricingPage() {
           </div>
         </div>
       </div>
-      <div className="mt-6 w-full lg:mt-14">
+      {/* <div className="mt-6 w-full lg:mt-14">
         <div className="mx-auto flex max-w-5xl flex-col items-start justify-start space-y-4 rounded-xl border border-gray-300 bg-gray-100 p-6 shadow-lg shadow-gray-100 dark:border-gray-500 dark:bg-gray-950 dark:shadow-gray-800">
           <div className="rounded-xl bg-white p-3 dark:bg-gray-700">
             <span className="text-xl font-semibold text-gray-500 dark:text-gray-300">
@@ -199,7 +199,7 @@ export default function PricingPage() {
             </button>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }
