@@ -179,12 +179,21 @@ export default function ChatWidget({ agentConfig, id, agentKey, loading }) {
                   placeholder="j.felix@gmail.com"
                 ></input>
               </div>
-              <button
-                type="submit"
-                className="mt-3 w-full rounded-xl bg-blue-700 p-2 text-white transition-transform delay-75 duration-300 hover:scale-105 hover:bg-blue-800"
-              >
-                Begin Conversation
-              </button>
+              <div className="flex flex-col space-y-1">
+                <button
+                  type="submit"
+                  className="mt-3 w-full cursor-pointer rounded-xl bg-blue-700 p-2 text-white transition-transform delay-75 duration-300 hover:scale-105 hover:bg-blue-800"
+                >
+                  Begin Conversation
+                </button>
+                <button
+                  type="button"
+                  className="mx-auto cursor-pointer text-center text-white"
+                  onClick={() => setView(0)}
+                >
+                  Cancel
+                </button>
+              </div>
             </form>
           </div>
         </div>

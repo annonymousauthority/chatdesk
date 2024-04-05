@@ -78,7 +78,7 @@ export default function ManageAgents({ user, profileConfig }) {
           onClick={() => {
             setCreateAgent(true)
           }}
-          disabled={agent != null}
+          disabled={profileConfig.number_of_agent == 1 && agent != null}
           className={
             profileConfig.number_of_agent == 1 && agent != null
               ? 'w-[150px] rounded-xl bg-gray-400 p-1 text-white '

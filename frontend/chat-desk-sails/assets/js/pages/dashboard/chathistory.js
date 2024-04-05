@@ -44,7 +44,7 @@ export default function ChatHistoryPage({ user }) {
           chats={chats}
         />
       )}
-      <div className="relative z-20 flex h-full flex-col items-start justify-start p-6 pt-0">
+      <div className="relative flex h-full flex-col items-start justify-start p-6 pt-0">
         <div className="flex flex-col items-start justify-start">
           <h1 className="text-4xl font-bold text-gray-600 dark:text-gray-200">
             Chat History
@@ -56,7 +56,7 @@ export default function ChatHistoryPage({ user }) {
         {!isLoading ? (
           <div className=" w-full overflow-y-auto">
             {chatHistory != null ? (
-              <div className="mt-8 flex w-full flex-wrap gap-2 overflow-y-auto">
+              <div className="scroll-hide mt-8 flex w-full flex-wrap gap-2 overflow-y-auto">
                 {chatHistory.map((e, i) => {
                   return (
                     <div

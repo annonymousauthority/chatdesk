@@ -30,60 +30,85 @@ export default function ChatScreen({
   }, [])
   async function createMessage(e) {
     e.preventDefault()
-    const mes = message
-    let chat = {
-      id: chats.length + 1,
-      sender: 'user',
-      message: message,
-    }
-    const chatRef = doc(
-      appFirestore,
-      `USERS/${id}/${agentKey}`,
-      `Chat-by-${customer.email}`
-    )
-    const updatedChat = [...chats]
-    updatedChat.push(chat)
-    setChats(updatedChat)
-    await updateDoc(chatRef, {
-      chat: arrayUnion(chat),
-    })
-    setMessage('')
+    if (message != '' && message != null) {
+      const mes = message
+      let chat = {
+        id: chats.length + 1,
+        sender: 'user',
+        message: message,
+      }
+      const chatRef = doc(
+        appFirestore,
+        `USERS/${id}/${agentKey}`,
+        `Chat-by-${customer.email}`
+      )
+      const updatedChat = [...chats]
+      updatedChat.push(chat)
+      setChats(updatedChat)
+      await updateDoc(chatRef, {
+        chat: arrayUnion(chat),
+      })
+      setMessage('')
+      const maxRetries = 3
+      let retriesRemaining = maxRetries
 
-    await fetch('https://chatdesk-u4xh.onrender.com/queryembeddings/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        query: mes,
-        category: 'Customer Rep.',
-        document: agentConfig.document,
-        name: customer.name,
-        agent: agentConfig.name,
-      }),
-    })
-      .then(async (response) => {
-        const json = await response.json()
-        console.log(json)
-        let ai_chat = {
-          id: updatedChat.length + 1,
-          sender: 'ai',
-          message: json.augmented_response,
+      const aiQueryResponse = async () => {
+        try {
+          const response = await fetch(
+            'https://chatdesk-u4xh.onrender.com/queryembeddings/',
+            {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                query: mes,
+                category: 'Customer Rep.',
+                document: agentConfig.document,
+                name: customer.name,
+                agent: agentConfig.name,
+              }),
+            }
+          )
+          const json = await response.json()
+          let ai_chat = {
+            id: updatedChat.length + 1,
+            sender: 'ai',
+            message: json.augmented_response,
+          }
+          const chatRef = doc(
+            appFirestore,
+            `USERS/${id}/${agentKey}`,
+            `Chat-by-${customer.email}`
+          )
+          const uchat = [...updatedChat]
+          uchat.push(ai_chat)
+          setChats(uchat)
+          await updateDoc(chatRef, {
+            chat: arrayUnion(ai_chat),
+          })
+        } catch (error) {
+          console.log('Error found', error)
+          if (retriesRemaining > 0) {
+            retriesRemaining--
+            setTimeout(aiQueryResponse, 1500)
+          } else {
+            let ai_chat = {
+              id: updatedChat.length + 1,
+              sender: 'ai',
+              message: 'Unable to provide response, please try again later.',
+            }
+            const chatRef = doc(
+              appFirestore,
+              `USERS/${id}/${agentKey}`,
+              `Chat-by-${customer.email}`
+            )
+            const uchat = [...updatedChat]
+            uchat.push(ai_chat)
+            setChats(uchat)
+          }
         }
-        const chatRef = doc(
-          appFirestore,
-          `USERS/${id}/${agentKey}`,
-          `Chat-by-${customer.email}`
-        )
-        const uchat = [...updatedChat]
-        uchat.push(ai_chat)
-        setChats(uchat)
-        await updateDoc(chatRef, {
-          chat: arrayUnion(ai_chat),
-        })
-      })
-      .catch((error) => {
-        console.log(error)
-        setMessage('')
-      })
+      }
+      aiQueryResponse()
+    }
   }
   return (
     <div className="h-full w-full overflow-y-auto py-6">
@@ -135,7 +160,7 @@ export default function ChatScreen({
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Write your message here..."
-          className="w-full rounded-lg p-1 text-sm font-light placeholder:text-xs focus:border-none focus:outline-none focus:ring-0 active:border-none active:ring-0"
+          className="w-full rounded-br-lg rounded-tl-lg rounded-tr-lg p-1 text-sm font-light placeholder:text-xs focus:border-none focus:outline-none focus:ring-0 active:border-none active:ring-0"
         ></textarea>
         <button
           type="submit"

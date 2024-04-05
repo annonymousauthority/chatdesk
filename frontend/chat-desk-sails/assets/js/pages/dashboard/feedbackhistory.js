@@ -135,39 +135,46 @@ export default function FeedbackHistory({ user }) {
       </div>
       <div className="mt-6 flex items-center justify-start">
         {!isLoading ? (
-          <div className="w-full">
+          <div className="w-full overflow-y-auto">
             {feedbackHistory != null ? (
-              <div className="flex flex-wrap gap-2">
+              <div className="scroll-hide mt-8 flex w-full flex-wrap gap-2 overflow-y-auto">
                 {feedbackHistory.map((e, i) => {
                   return (
-                    <div
-                      className={`flex h-full w-1/2 flex-col items-center justify-start rounded-xl p-3 ${
-                        i % 2 === 0 ? 'bg-pink-500' : 'bg-blue-500'
-                      }`}
-                    >
-                      <span className="text-sm font-semibold text-white">
-                        {e.comment}
-                      </span>
-                      <div className="mt-3 flex w-full items-center justify-between">
-                        <span className="text-sm font-light text-gray-100">
-                          {e.name}
-                        </span>
-                        <div className="flex items-center justify-start">
-                          {Array.from({ length: e.rating }, (_, index) => (
-                            <StarIcon
-                              key={index}
-                              className="h-6 w-6 text-yellow-500"
-                            />
-                          ))}
-                          {Array.from({ length: 5 - e.rating }, (_, index) => (
-                            <StarIcon
-                              key={index}
-                              className="h-6 w-6 text-gray-100"
-                            />
-                          ))}
+                    <>
+                      {e.rating > 0 && (
+                        <div
+                          className={`flex h-full w-1/2 flex-col items-start text-left justify-start rounded-xl p-3 ${
+                            i % 2 === 0 ? 'bg-pink-500' : 'bg-blue-500'
+                          }`}
+                        >
+                          <span className="text-sm font-semibold text-white">
+                            {e.comment}
+                          </span>
+                          <div className="mt-3 flex w-full items-center justify-between">
+                            <span className="text-sm font-light text-gray-100">
+                              {e.name}
+                            </span>
+                            <div className="flex items-center justify-start">
+                              {Array.from({ length: e.rating }, (_, index) => (
+                                <StarIcon
+                                  key={index}
+                                  className="h-6 w-6 text-yellow-500"
+                                />
+                              ))}
+                              {Array.from(
+                                { length: 5 - e.rating },
+                                (_, index) => (
+                                  <StarIcon
+                                    key={index}
+                                    className="h-6 w-6 text-gray-100"
+                                  />
+                                )
+                              )}
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
+                      )}
+                    </>
                   )
                 })}
               </div>

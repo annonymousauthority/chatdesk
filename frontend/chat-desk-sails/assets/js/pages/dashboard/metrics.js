@@ -186,7 +186,7 @@ export default function MetricsPage({ user }) {
                     return (
                       <div
                         key={i}
-                        className={`flex h-full w-1/2 flex-col items-center justify-start rounded-xl p-3 ${
+                        className={`flex h-full w-1/2 flex-col items-start text-left justify-start rounded-xl p-3 ${
                           i % 2 === 0 ? 'bg-pink-500' : 'bg-blue-500'
                         }`}
                       >
