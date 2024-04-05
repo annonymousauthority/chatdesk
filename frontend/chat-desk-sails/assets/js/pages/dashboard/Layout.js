@@ -168,11 +168,6 @@ export default function DashboardLayout({ children }) {
             </article>
           </div>
         </div>
-        {/* https://chatdesk-widget.onrender.com/?agentKey=Ax13g_nih0ld */}
-        <iframe
-          src="http://localhost:3001/?agentKey=Ax13g_nih0ld"
-          className="absolute bottom-0 right-0 z-[999] bg-transparent bg-opacity-0 w-[680px] h-[75vh]"
-        ></iframe>
         <Footer />
       </main>
     )

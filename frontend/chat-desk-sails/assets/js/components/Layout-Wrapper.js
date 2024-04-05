@@ -70,11 +70,6 @@ export default function LayoutWrapper({ children }) {
             </div>
           </nav>
           <article>{children}</article>
-          <iframe
-            id='chatWidget'
-            src="http://localhost:3001/?agentKey=Ax13g_nih0ld"
-            className="absolute bottom-0 right-0 z-[999] max-h-[900px] max-w-[680px] bg-transparent bg-opacity-0"
-          ></iframe>
           <Footer />
         </main>
       </>

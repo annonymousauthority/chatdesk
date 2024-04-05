@@ -39,3 +39,5 @@ widget/*.seed
 widget/*.log
 widget/*.out
 widget/*.pid
+
+widget-vanilla

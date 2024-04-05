@@ -87,7 +87,7 @@ export default function ChatScreen({
   }
   return (
     <div className="h-full w-full overflow-y-auto py-6">
-      <div className="absolute left-0 top-0 flex h-[35px] w-full items-center justify-between rounded-tl-xl rounded-tr-xl border-2 border-blue-700 bg-blue-700 p-2">
+      <div className="absolute left-0 top-0 flex h-[35px] w-full items-center justify-between rounded-tr-xl border-2 border-blue-700 bg-blue-700 p-2">
         <span className="text-sm font-light text-white">Chat with Alakey</span>
         <button
           type="button"
@@ -126,7 +126,7 @@ export default function ChatScreen({
       </div>
       <form
         onSubmit={createMessage}
-        className="absolute bottom-2 left-0 flex h-[35px] w-full items-center justify-center rounded-xl bg-gray-50"
+        className="absolute bottom-2 left-0 flex h-[35px] w-full resize-none items-center justify-center rounded-br-xl rounded-tl-xl rounded-tr-xl bg-gray-50"
       >
         <textarea
           maxLength={200}

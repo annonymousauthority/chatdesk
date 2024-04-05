@@ -1,4 +1,5 @@
 import { Link } from '@inertiajs/react'
+import IframeResizer from 'iframe-resizer-react'
 
 export default function Index() {
   return (
@@ -62,7 +63,7 @@ export default function Index() {
           </h3>
           <Link
             href="/login"
-            className=" items-center mx-auto mt-6 flex w-full justify-center rounded-xl bg-blue-700 p-3 text-white shadow-sm shadow-blue-700 hover:bg-blue-800 lg:mt-10 lg:w-1/3"
+            className=" mx-auto mt-6 flex w-full items-center justify-center rounded-xl bg-blue-700 p-3 text-white shadow-sm shadow-blue-700 hover:bg-blue-800 lg:mt-10 lg:w-1/3"
           >
             {' '}
             Get Started
@@ -213,6 +214,12 @@ export default function Index() {
             </div>
           </div>
         </div>
+      </div>
+      <div className='w-full space-y-3 py-12 h-full'>
+        <IframeResizer
+          src="http://localhost:1337/?agentKey=Ax13g_nih0ld"
+          style={{ width: '1px', minWidth:"100%", height:"100%", minHeight:"700px" }}
+        />
       </div>
     </div>
   )

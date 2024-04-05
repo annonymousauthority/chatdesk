@@ -12,6 +12,7 @@
     "@sailshq/lodash": "^3.10.3",
     "@sailshq/socket.io-redis": "^5.2.0",
     "firebase": "^10.9.0",
+    "iframe-resizer-react": "^1.1.0",
     "inertia-sails": "^0.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
