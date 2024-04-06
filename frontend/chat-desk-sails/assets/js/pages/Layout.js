@@ -11,7 +11,7 @@ export default function Layout({ children }) {
           name="description"
           content="Keeping up with customer inquiries on your site doesn’t have to be a delayed or difficult process. With a simple setup, you can deploy AI agents to handle conversations and respond to your customers quickly and easily."
         />
-        <meta name="inertia-version" content="0.0.9" />
+        <meta name="inertia-version" content="0.1.0" />
         <meta
           name="inertia-root-url"
           content="https://firebasestorage.googleapis.com/"
@@ -46,11 +46,11 @@ export default function Layout({ children }) {
         <meta name="category" content="Technology" />
         <meta
           name="keywords"
-          content="Javascript Developer, Learn Web Development, Web Development, Developer, Cost Saving, Freelancing, Tech, Open Source"
+          content="Chatbot, customer care, AI, contact us"
         />
         <meta
           property="og:image"
-          content="v0/b/chat-desk-1eeb2.appspot.com/o/Screenshot%202024-04-06%20at%201.34.50%E2%80%AFPM.png?alt=media&token=4b26b2d7-2b93-4767-90c8-f75198c87f88"
+          content="https://firebasestorage.googleapis.com/v0/b/chat-desk-1eeb2.appspot.com/o/Screenshot%202024-04-06%20at%201.34.50%E2%80%AFPM.png?alt=media&token=4b26b2d7-2b93-4767-90c8-f75198c87f88"
         />
         <meta
           property="og:title"
@@ -61,27 +61,27 @@ export default function Layout({ children }) {
           content="Keeping up with customer inquiries on your site doesn’t have to be a delayed or difficult process. With a simple setup, you can deploy AI agents to handle conversations and respond to your customers quickly and easily."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="SoAI" />
+        <meta property="og:site_name" content="chatdesks" />
         <meta property="og:author" content="Augustine Francis" />
-        <meta property="og:url" content="https://www.learnwithaugustine.com" />
+        <meta property="og:url" content="https://www.chatdesks.com" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:image"
-          content="v0/b/chat-desk-1eeb2.appspot.com/o/Screenshot%202024-04-06%20at%201.34.50%E2%80%AFPM.png?alt=media&token=4b26b2d7-2b93-4767-90c8-f75198c87f88"
+          content="https://firebasestorage.googleapis.com/v0/b/chat-desk-1eeb2.appspot.com/o/Screenshot%202024-04-06%20at%201.34.50%E2%80%AFPM.png?alt=media&token=4b26b2d7-2b93-4767-90c8-f75198c87f88"
         />
         <meta name="twitter:creator" content="@_Augustine_F" />
         <meta
           name="twitter:alt"
           content="Chat Desk - Smart Chat Widget for Modern Businesses"
         />
-        <meta name="twitter:url" content="https://www.learnwithaugustine.com" />
+        <meta name="twitter:url" content="https://www.x.com/_augustine_f" />
         <meta
           name="twitter:title"
           content="Chat Desk - Smart Chat Widget for Modern Businesses"
         />
         <meta
           name="twitter:description"
-          content="Chat Desk - Smart Chat Widget for Modern Businesses"
+          content="Keeping up with customer inquiries on your site doesn’t have to be a delayed or difficult process. With a simple setup, you can deploy AI agents to handle conversations and respond to your customers quickly and easily"
         />
         <meta name="twitter:app:id:iphone" content="twitter_app://iphone" />
         <meta name="twitter:app:id:ipad" content="twitter_app://ipad" />
