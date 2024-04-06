@@ -174,7 +174,7 @@ export default function Index() {
           </div>
         </div>
       </div>
-      <IframeResizer
+      <iframe
         id="demo-contact"
         src="https://widget.chatdesks.com/?agentKey=Ax13g_nih0ld"
         style={{
