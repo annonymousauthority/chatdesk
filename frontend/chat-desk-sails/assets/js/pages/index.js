@@ -32,13 +32,13 @@ export default function Index() {
               {' '}
               Get Started
             </Link>
-            <button
-              type="button"
-              className="w-full rounded-xl border border-blue-300  p-3 text-black shadow-sm hover:bg-gray-200 hover:text-black lg:w-1/2 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-white"
+            <a
+              href="#demo-contact"
+              className="flex w-full justify-center rounded-xl  border border-blue-300 p-3 text-black shadow-sm hover:bg-gray-200 hover:text-black lg:w-1/2 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-white"
             >
               {' '}
-              View Demo
-            </button>
+              Try Now
+            </a>
           </div>
           <div className="mx-auto flex w-full items-center justify-center lg:w-1/3">
             <span className="mx-auto text-center text-sm text-gray-400">
@@ -155,13 +155,13 @@ export default function Index() {
                 {' '}
                 Get Started
               </button>
-              <button
-                type="button"
-                className="w-full rounded-xl border border-blue-300  p-3 text-black shadow-sm hover:bg-gray-200 hover:text-black lg:w-1/2 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-white"
+              <a
+                href="#demo-contact"
+                className="flex w-full justify-center rounded-xl  border border-blue-300 p-3 text-black shadow-sm hover:bg-gray-200 hover:text-black lg:w-1/2 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-white"
               >
                 {' '}
-                Try Demo
-              </button>
+                Try now
+              </a>
             </div>
             <div className="mx-auto flex w-full items-center justify-center lg:w-1/3">
               <span className="mx-auto text-center text-sm text-gray-400">
@@ -175,11 +175,12 @@ export default function Index() {
         </div>
       </div>
       <IframeResizer
-        src="http://localhost:1337/?agentKey=Ax13g_nih0ld"
+        id="demo-contact"
+        src="https://chatdesk-widget.onrender.com/?agentKey=Ax13g_nih0ld"
         style={{
           width: '1px',
           minWidth: '100%',
-          height: '100%',
+          height: '700px',
           minHeight: '700px',
           marginTop: '64px',
           marginLeft: '128px',

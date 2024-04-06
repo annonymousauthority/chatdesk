@@ -142,7 +142,7 @@ export default function MetricsPage({ user }) {
           {!isLoading ? (
             <div className="mt-6 flex w-full items-center justify-center lg:w-1/2">
               {agent != null ? (
-                <div className="flex h-full w-full flex-col items-start justify-start rounded-xl border border-gray-200 bg-gray-100 p-3 shadow-lg shadow-gray-200 dark:bg-gray-800">
+                <div className="flex h-full w-full flex-col items-start justify-start rounded-xl border border-gray-200 bg-gray-100 p-3 shadow-lg shadow-gray-200 dark:bg-gray-800 dark:shadow-gray-700">
                   <div className="flex w-full items-center justify-between">
                     <span className="text-xl font-semibold text-black dark:text-white">
                       {agent[0].name}
@@ -186,7 +186,7 @@ export default function MetricsPage({ user }) {
                     return (
                       <div
                         key={i}
-                        className={`flex h-full w-1/2 flex-col items-start text-left justify-start rounded-xl p-3 ${
+                        className={`flex h-full w-1/2 flex-col items-start justify-start rounded-xl p-3 text-left ${
                           i % 2 === 0 ? 'bg-pink-500' : 'bg-blue-500'
                         }`}
                       >

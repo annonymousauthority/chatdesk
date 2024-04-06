@@ -26,12 +26,13 @@ export default function PricingPage() {
             need.
           </p>
           <div className="mx-auto flex w-full items-center justify-center space-x-4 lg:w-1/3">
-            <button
-              type="button"
-              className="w-full rounded-xl border border-blue-300  p-3 text-black shadow-sm hover:bg-gray-200 hover:text-black lg:w-1/2 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-white"
+            <a
+              href="/#demo-contact"
+              className="flex w-full justify-center rounded-xl  border border-blue-300 p-3 text-black shadow-sm hover:bg-gray-200 hover:text-black lg:w-1/2 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-white"
             >
-              View Demo
-            </button>
+              {' '}
+              Try Now
+            </a>
           </div>
           <div className="mx-auto flex justify-center">
             <Switch.Group as="div" className="flex items-center">
