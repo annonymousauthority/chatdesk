@@ -11,7 +11,7 @@ export default function Layout({ children }) {
           name="description"
           content="Keeping up with customer inquiries on your site doesn’t have to be a delayed or difficult process. With a simple setup, you can deploy AI agents to handle conversations and respond to your customers quickly and easily."
         />
-        <meta name="inertia-version" content="[inertia-version]" />
+        <meta name="inertia-version" content="0.0.9" />
         <meta
           name="inertia-root-url"
           content="https://firebasestorage.googleapis.com/"
