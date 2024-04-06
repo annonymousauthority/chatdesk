@@ -31,17 +31,17 @@ export default function Layout({ children }) {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="black" />
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/apple-icon.png" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+        <link rel="apple-touch-icon" href="images/apple-icon.png" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
-          href="/apple-icon-x3.png"
+          href="images/apple-icon-x3.png"
           type="image/png"
         />
         <link
           rel="apple-touch-icon-precomposed"
-          href="/apple-touch-icon-precomposed.png"
+          href="images/apple-touch-icon-precomposed.png"
         />
         <meta name="category" content="Technology" />
         <meta
@@ -94,7 +94,7 @@ export default function Layout({ children }) {
           name="googlebot"
           content="index, follow, noimageindex, max-video-preview=-1, max-image-preview=large, max-snippet=-1"
         />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/png" href="images/favicon.svg" />
       </Head>
       <LayoutWrapper children={children} />
     </>
