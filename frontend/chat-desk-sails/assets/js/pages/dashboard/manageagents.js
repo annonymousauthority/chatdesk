@@ -25,9 +25,24 @@ export default function ManageAgents({ user, profileConfig }) {
     return `${day}/${month}/${year}`
   }
 
+  function formatDate(timestampOrObject) {
+    let timestamp
+
+    timestamp = timestampOrObject.toMillis()
+
+    const options = { year: 'numeric', month: 'long', day: 'numeric' }
+    const dateObj = new Date(timestamp)
+
+    if (isNaN(dateObj.getTime())) {
+      return 'Invalid date'
+    }
+
+    const formattedDate = dateObj.toLocaleString('en-US', options)
+    return formattedDate
+  }
+
   useEffect(() => {
     ;(async () => {
-      console.log(new Date().getTime())
       let agent = []
       let count = 0
       let feedback_count = 0
@@ -78,7 +93,9 @@ export default function ManageAgents({ user, profileConfig }) {
           onClick={() => {
             setCreateAgent(true)
           }}
-          disabled={!profileConfig.agent_approved || agent != null || profileConfig.number_of_agent == 1}
+          disabled={
+            !profileConfig.agent_approved || profileConfig.number_of_agent == 1
+          }
           className={
             profileConfig.number_of_agent == 1 && agent != null
               ? 'w-[150px] rounded-xl bg-gray-400 p-1 text-white '
@@ -122,7 +139,7 @@ export default function ManageAgents({ user, profileConfig }) {
                   </div>
                   <div className="flex flex-col items-start justify-start text-sm font-light text-gray-500">
                     <span>Deployed Date:</span>
-                    <span>{timestampToDate(agent[0].deployed_date)}</span>
+                    <span>{formatDate(agent[0].deployed_date)}</span>
                   </div>
                 </div>
               </div>
@@ -137,6 +154,8 @@ export default function ManageAgents({ user, profileConfig }) {
         )}
       </div>
       <CreateAgentModal
+        agentKey={user.agent_key}
+        email={user.email}
         open={createAgent}
         close={() => {
           setCreateAgent(false)

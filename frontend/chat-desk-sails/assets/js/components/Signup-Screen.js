@@ -1,4 +1,3 @@
-
 import { Link } from '@inertiajs/react'
 import {
   signInWithPopup,
@@ -23,19 +22,54 @@ export default function SignupScreen() {
   const [googleAuth, setGoogleAuth] = useState(false)
   const [agreement, setAgreement] = useState(false)
 
+  function generateKeys(length) {
+    const charset =
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_'
+    let result = ''
+
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * charset.length)
+      result += charset.charAt(randomIndex)
+    }
+
+    // Ensure the first character is an uppercase letter
+    result = result.replace(
+      result.charAt(0),
+      charset.charAt(Math.floor(Math.random() * 26) + 65)
+    )
+
+    return result
+  }
+
   const signupByPassword = (e) => {
     e.preventDefault()
     setChecking(true)
     setWarning('')
+    const configCode = generateKeys(5)
+    const agentKey = generateKeys(12)
     if (agreement) {
       createUserWithEmailAndPassword(appAuth, formData.email, formData.password)
         .then(async (user) => {
           await setDoc(doc(appFirestore, 'USERS', formData.email), {
             name: formData.name,
             email: formData.email,
+            config_code: configCode,
+            agent_key: agentKey,
             photoURL:
               'https://firebasestorage.googleapis.com/v0/b/chat-desk-1eeb2.appspot.com/o/circle_logo_icon.png?alt=media&token=b7fc7095-7909-403d-9724-32cd0530933c',
           })
+          await setDoc(
+            doc(appFirestore, 'USERS', formData.email, configCode, 'config'),
+            {
+              agent_approved: false,
+              category_selection: false,
+              embed_code: true,
+              invite_permission: false,
+              number_of_agent: 0,
+              plan: 'free',
+              purchased_date: new Date(),
+            }
+          )
           setTimeout(() => {
             setChecking(false)
           }, 1500)
@@ -65,11 +99,27 @@ export default function SignupScreen() {
         .then(async (result) => {
           const credential = GoogleAuthProvider.credentialFromResult(result)
           const user = result.user
+          const configCode = generateKeys(5)
+          const agentKey = generateKeys(12)
           await setDoc(doc(appFirestore, 'USERS', user.email), {
             name: user.displayName,
             email: user.email,
             photoURL: user.photoURL,
+            config_code: configCode,
+            agent_key: agentKey,
           })
+          await setDoc(
+            doc(appFirestore, 'USERS', formData.email, configCode, 'config'),
+            {
+              agent_approved: false,
+              category_selection: false,
+              embed_code: true,
+              invite_permission: false,
+              number_of_agent: 0,
+              plan: 'free',
+              purchased_date: new Date(),
+            }
+          )
           setChecking(false)
         })
         .catch((error) => {

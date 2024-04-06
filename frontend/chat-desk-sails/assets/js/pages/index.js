@@ -1,5 +1,4 @@
 import { Link } from '@inertiajs/react'
-import IframeResizer from 'iframe-resizer-react'
 
 export default function Index() {
   return (
@@ -174,9 +173,10 @@ export default function Index() {
           </div>
         </div>
       </div>
+      {/* "https://widget.chatdesks.com/?agentKey=Ax13g_nih0ld" */}
       <iframe
         id="demo-contact"
-        src="https://widget.chatdesks.com/?agentKey=Ax13g_nih0ld"
+        src="http://localhost:3005/?agentKey=Ax13g_nih0ld"
         style={{
           width: '1px',
           minWidth: '100%',

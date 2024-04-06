@@ -1,6 +1,10 @@
-from fastapi import APIRouter
+import io
+from fastapi import APIRouter, Body
 from fastapi import FastAPI, File, UploadFile, HTTPException
 import os
+
+from pydantic import BaseModel
+import requests
 from helpers.document_format import format_document
 from logging import getLogger
 from helpers.detect_encoding import detect_encoding
@@ -17,10 +21,16 @@ error_logger = getLogger("error_logger")
 router = APIRouter()
 
 
+class QueryRequest(BaseModel):
+    document: str
+
+
 @router.post("/chunkdocument/")
-async def create_chunk_document(file: UploadFile = File(...)):
+async def create_chunk_document(request_body: QueryRequest = Body(...)):
+    document = request_body.document
     try:
-        contents = await file.read()
+        response = requests.get(document)
+        contents = response.content
         detect_encoding(contents)
         text = extract_text_from_pdf(contents)
 
@@ -33,4 +43,4 @@ async def create_chunk_document(file: UploadFile = File(...)):
         }
     except Exception as e:
         error_logger.error(f"Error uploading file {str(e)}")
-        raise HTTPException(status_code=500, detail="Internal Server Error")
+        raise HTTPException(status_code=500, detail=f"Internal Server Error{str(e)}")

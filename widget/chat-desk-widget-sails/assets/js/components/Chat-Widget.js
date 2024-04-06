@@ -102,26 +102,24 @@ export default function ChatWidget({ agentConfig, id, agentKey, loading }) {
               </div>
             </div>
           </button>
-          {!loading && Object.entries(agentConfig.Quicklinks).length > 0 ? (
+          {!loading && agentConfig.quicklinks.length > 0 ? (
             <div className="mt-6 flex min-h-[150px] flex-col items-start justify-start space-y-3 rounded-xl bg-white p-3">
               <span className="text-xl font-semibold text-gray-500">
                 Quick Links
               </span>
               <div className="flex w-full flex-col space-y-3">
-                {Object.entries(agentConfig.Quicklinks).map(
-                  ([title, link], i) => (
-                    <a
-                      key={i}
-                      href={link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex w-full items-center justify-between text-sm hover:text-blue-400"
-                    >
-                      <span>{title}</span>
-                      <span>{'>'}</span>
-                    </a>
-                  )
-                )}
+                {agentConfig.quicklinks.map(([title, link], i) => (
+                  <a
+                    key={i}
+                    href={link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex w-full items-center justify-between text-sm hover:text-blue-400"
+                  >
+                    <span>{title}</span>
+                    <span>{'>'}</span>
+                  </a>
+                ))}
               </div>
             </div>
           ) : (

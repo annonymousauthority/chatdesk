@@ -5,12 +5,91 @@ import {
   LockClosedIcon,
 } from '@heroicons/react/24/outline'
 import UploadDocumentComp from './UploadDocumentComp'
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
+import { appFirestore, appStorage } from '@/pages/lib/firebase'
+import LoaderSpinner from './Loader-Comp'
+import { doc, setDoc } from 'firebase/firestore'
 
-export default function CreateAgentModal({ open, close }) {
+export default function CreateAgentModal({ open, close, email, agentKey }) {
   const [selectedCategory, setSelectedCategory] = useState('')
+  const [file, setFile] = useState(null)
+  const [warning, setWarning] = useState('')
+  const [checking, setChecking] = useState(false)
+  const [agentName, setAgentName] = useState('')
   const deployAgentRef = useRef(null)
   const onClose = () => {
     close()
+  }
+  function deployAgent(e) {
+    e.preventDefault()
+    setChecking(true)
+    const uploadAgentDoc = async () => {
+      if (file) {
+        const storagePath = `userDoc/${email}/${file?.name}`
+
+        const storageRef = ref(appStorage, storagePath)
+
+        const metadata = {
+          contentType: file.type,
+        }
+
+        const uploadTask = uploadBytesResumable(storageRef, file, metadata)
+
+        uploadTask.on(
+          'state_changed',
+          (snapshot) => {
+            const progress =
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            console.log(`Upload is ${progress}% done`)
+          },
+          (error) => {
+            setChecking(false)
+            setWarning('Unable to upload Document, please try again.')
+            console.log(error)
+          },
+          () => {
+            getDownloadURL(uploadTask.snapshot.ref).then(async (docURL) => {
+              try {
+                const response = await fetch(
+                  'http://0.0.0.0:8000/chunkdocument/',
+                  {
+                    method: 'POST',
+                    headers: {
+                      'content-type': 'application/json',
+                    },
+                    body: JSON.stringify({ document: docURL }),
+                  }
+                )
+                const json = await response.json()
+                console.log(json)
+                await setDoc(
+                  doc(appFirestore, 'USERS', email, agentKey, 'config'),
+                  {
+                    quicklinks: [],
+                    agent_key: agentKey,
+                    category: 'General',
+                    description: '',
+                    document: json?.chunks,
+                    name: agentName,
+                    rules: [],
+                    deployed_date: new Date(),
+                  }
+                )
+                onClose()
+                setChecking(false)
+              } catch (error) {
+                console.log(error)
+                setWarning(
+                  'Unable to Deploy Agent, please try again later or contact support.'
+                )
+                setChecking(false)
+              }
+            })
+          }
+        )
+      }
+    }
+    uploadAgentDoc()
   }
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -66,7 +145,10 @@ export default function CreateAgentModal({ open, close }) {
                   </div>
                 </div>
                 <div className="mt-6 w-full">
-                  <form className="flex w-full flex-col items-start justify-start space-y-4">
+                  <form
+                    onSubmit={deployAgent}
+                    className="flex w-full flex-col items-start justify-start space-y-4"
+                  >
                     <div className="w-full">
                       <label
                         htmlFor="agentname"
@@ -78,6 +160,8 @@ export default function CreateAgentModal({ open, close }) {
                         placeholder="Cynthia"
                         type="text"
                         name="agentname"
+                        value={agentName}
+                        onChange={(e) => setAgentName(e.target.value)}
                         id="agentname"
                         className="w-full border border-blue-100 p-2 placeholder:text-sm placeholder:font-light placeholder:text-gray-400 focus:outline focus:outline-blue-200"
                       />
@@ -149,7 +233,11 @@ export default function CreateAgentModal({ open, close }) {
                       </small>
                     </div>
                     <div className="w-full">
-                      <UploadDocumentComp handleFile={() => {}} />
+                      <UploadDocumentComp
+                        handleFile={(e) => {
+                          setFile(e)
+                        }}
+                      />
                     </div>
                     {/* <div className="flex w-full flex-col items-start justify-start">
                       <label className="text-xs text-gray-400">
@@ -166,14 +254,20 @@ export default function CreateAgentModal({ open, close }) {
                         follow. Seperate each rule with a comma.
                       </span>
                     </div> */}
-                    <div className="mt-5 w-full sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
+                    <div className="mt-5 flex w-full flex-wrap gap-2">
+                      <small className="text-center text-sm font-light text-red-300">
+                        {warning}
+                      </small>
                       <button
-                        type="button"
+                        type="submit"
                         className="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:col-start-2"
                         ref={deployAgentRef}
-                        onClick={() => onClose()}
                       >
-                        Deploy Agent
+                        {checking ? (
+                          <LoaderSpinner />
+                        ) : (
+                          <span>Deploy Agent</span>
+                        )}
                       </button>
                       <button
                         type="button"

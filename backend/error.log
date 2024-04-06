@@ -7,3 +7,7 @@
 2024-03-29 18:19:17,026 [ERROR] - Error uploading file The server is overloaded or not ready yet.
 2024-03-29 18:29:42,771 [ERROR] - Error uploading file query_embeddings() missing 1 required positional argument: 'document'
 2024-03-29 18:29:47,501 [ERROR] - Error uploading file query_embeddings() missing 1 required positional argument: 'document'
+2024-04-06 12:49:36,993 [ERROR] - Error uploading file 'str' object has no attribute 'read'
+2024-04-06 12:51:00,706 [ERROR] - Error uploading file 'str' object has no attribute 'read'
+2024-04-06 12:51:37,876 [ERROR] - Error uploading file 'str' object has no attribute 'read'
+2024-04-06 12:54:15,267 [ERROR] - Error uploading file 'str' object has no attribute 'read'
