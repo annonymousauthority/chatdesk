@@ -143,13 +143,13 @@ export default function FeaturesPage() {
           </div>
           <div className="flex w-full flex-col items-center justify-start">
             <div className="mx-auto flex w-full flex-col space-y-3 lg:w-1/3 lg:flex-row lg:items-center lg:justify-center lg:space-x-4 lg:space-y-0">
-              <button
-                type="button"
-                className="w-full rounded-xl bg-blue-700 p-3 text-white shadow-sm shadow-blue-700 hover:bg-blue-800 lg:w-1/2"
+              <Link
+                href="/login"
+                className="flex w-full items-center justify-center rounded-xl bg-blue-700 p-3 text-center text-white shadow-sm shadow-blue-700 hover:bg-blue-800 lg:w-1/2"
               >
                 {' '}
                 Get Started
-              </button>
+              </Link>
               <a
                 href="/#demo-contact"
                 className="flex w-full justify-center rounded-xl  border border-blue-300 p-3 text-black shadow-sm hover:bg-gray-200 hover:text-black lg:w-1/2 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-white"

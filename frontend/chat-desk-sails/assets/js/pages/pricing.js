@@ -82,7 +82,7 @@ export default function PricingPage() {
               </span>
             </div>
             <div>
-              <ul className="list-disc text-sm font-light text-gray-500">
+              <ul className="list-disc text-sm font-light text-gray-500 dark:text-gray-200">
                 <li>1 Agent</li>
                 <li>25 Customers/mo</li>
                 <li>Get Customer Feedback</li>
@@ -93,7 +93,7 @@ export default function PricingPage() {
             </div>
             <button
               type="button"
-              className="w-full rounded-xl bg-purple-200 p-3 text-sm font-light hover:bg-purple-400 dark:bg-purple-400 dark:hover:bg-purple-600"
+              className="w-full rounded-xl border border-gray-500 bg-transparent p-3 text-sm font-light hover:bg-gray-100 hover:text-black dark:border-gray-200 dark:hover:bg-purple-100"
             >
               Get Started
             </button>
@@ -108,7 +108,7 @@ export default function PricingPage() {
               </span>
             </div>
             <div>
-              <ul className="list-disc text-sm font-light text-gray-500">
+              <ul className="list-disc text-sm font-light text-gray-500 dark:text-gray-200">
                 <li>1 Agent</li>
                 <li>100 Customers/mo</li>
                 <li>Get Customer Feedback</li>
@@ -119,7 +119,7 @@ export default function PricingPage() {
             </div>
             <button
               type="button"
-              className="font-lighhover:bg-purple-400 w-full rounded-xl bg-blue-500 p-3 text-sm dark:bg-purple-400 dark:hover:bg-purple-600"
+              className="w-full rounded-xl border border-gray-500 bg-transparent p-3 text-sm font-light hover:bg-gray-100 hover:text-black dark:border-gray-200 dark:hover:bg-purple-100"
             >
               Get Started
             </button>
@@ -134,7 +134,7 @@ export default function PricingPage() {
               </span>
             </div>
             <div>
-              <ul className="list-disc text-sm font-light text-gray-500">
+              <ul className="list-disc text-sm font-light text-gray-500 dark:text-gray-200">
                 <li>Multiple Agent</li>
                 <li>Unlimited Customers/mo</li>
                 <li>Get Customer Feedback</li>
@@ -145,7 +145,7 @@ export default function PricingPage() {
             </div>
             <button
               type="button"
-              className="w-full rounded-xl bg-purple-200 p-3 text-sm font-light hover:bg-purple-400 dark:bg-purple-400 dark:hover:bg-purple-600"
+              className="w-full rounded-xl border border-gray-500 bg-transparent p-3 text-sm font-light hover:bg-gray-100 hover:text-black dark:border-gray-200 dark:hover:bg-purple-100"
             >
               Get Started
             </button>
@@ -158,7 +158,7 @@ export default function PricingPage() {
               <span className="font-semibold">{pricing['enterprise'][0]}</span>
             </div>
             <div>
-              <ul className="list-disc text-sm font-light text-gray-500">
+              <ul className="list-disc text-sm font-light text-gray-500 dark:text-gray-200">
                 <li>Unlimited Organizations</li>
                 <li>Unlimited Agents</li>
                 <li>Unlimited Customers/mo</li>
@@ -171,7 +171,7 @@ export default function PricingPage() {
             </div>
             <button
               type="button"
-              className="w-full rounded-xl bg-purple-200 p-3 text-sm font-light hover:bg-purple-400 dark:bg-purple-400 dark:hover:bg-purple-600"
+              className="w-full rounded-xl border border-gray-500 bg-transparent p-3 text-sm font-light hover:bg-gray-100 hover:text-black dark:border-gray-200 dark:hover:bg-purple-100"
             >
               Get Started
             </button>
