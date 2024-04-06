@@ -49,12 +49,12 @@ export default function Index() {
             </span>
           </div>
         </div>
-        <div className="mx-auto mt-6 w-full space-y-3 lg:mt-24">
+        {/* <div className="mx-auto mt-6 w-full space-y-3 lg:mt-24">
           <h2 className="mx-auto flex items-center justify-center text-center text-4xl font-bold">
             Watch our Live Demo
           </h2>
           <div className="mx-auto w-full border border-gray-100 shadow-lg shadow-gray-300 lg:h-[400px] lg:w-[650px] dark:border-gray-800 dark:shadow-gray-800"></div>
-        </div>
+        </div> */}
       </div>
       <div className="mt-6 w-full space-y-3 bg-yellow-50 py-12 lg:mt-24 dark:bg-[#131313]">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-start">
