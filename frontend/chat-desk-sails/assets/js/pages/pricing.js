@@ -14,8 +14,8 @@ export default function PricingPage() {
     enterprise: [`Let's Talk`],
   })
   return (
-    <div className="relative mx-auto mt-16 flex h-full flex-col items-center justify-start p-6 pb-44 lg:p-0">
-      <div className="mx-auto max-w-6xl">
+    <div className="relative mx-auto mt-16 flex h-full flex-col items-center justify-start pb-44 lg:p-0">
+      <div className="mx-auto max-w-6xl p-6">
         <div className="w-full space-y-3">
           <h1 className="mt-3 text-center text-3xl font-bold lg:text-6xl">
             Increase Customer Conversion <br />
@@ -70,7 +70,7 @@ export default function PricingPage() {
           </div>
         </div>
       </div>
-      <div className="mt-6 w-full lg:mb-44 lg:mt-20">
+      <div className="mt-6 w-full p-6 lg:mb-44 lg:mt-20">
         <div className="mx-auto flex max-w-6xl flex-wrap items-start justify-center gap-2 space-x-2">
           <div className="flex min-h-[400px] w-full flex-col items-center justify-between space-y-8 rounded-[21px] border border-gray-200 p-4 shadow-lg shadow-gray-100 lg:w-1/4 2xl:w-1/5 dark:border-gray-500 dark:shadow-gray-800">
             <div className="flex flex-col items-center justify-start space-y-4">

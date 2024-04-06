@@ -2,8 +2,8 @@ import { Link } from '@inertiajs/react'
 
 export default function FeaturesPage() {
   return (
-    <div className="relative mx-auto mt-16 flex h-full flex-col items-center justify-start p-6 pb-36 lg:p-0">
-      <div className="mx-auto max-w-6xl">
+    <div className="relative mx-auto mt-16 flex h-full flex-col items-center justify-start pb-36 lg:p-0">
+      <div className="mx-auto max-w-6xl p-6">
         <div className="w-full space-y-3">
           <h1 className="mt-3 text-center text-3xl font-bold lg:text-6xl">
             Let AI Agents Chat with <br />
@@ -35,7 +35,7 @@ export default function FeaturesPage() {
           </div>
         </div>
       </div>
-      <div className="mt-6 w-full space-y-3 bg-yellow-50 py-12 lg:mt-24 dark:bg-[#131313]">
+      <div className="mt-6 w-full space-y-3 bg-yellow-50 p-6 py-12 lg:mt-24 dark:bg-[#131313]">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-start">
           <h3 className="mx-auto w-full text-center text-4xl font-bold lg:w-1/2">
             Give Customers the Attention They Deserve
@@ -129,7 +129,7 @@ export default function FeaturesPage() {
           </div>
         </div>
       </div>
-      <div className="w-full space-y-3 bg-pink-50 py-12 lg:mb-44 dark:bg-[#131313]">
+      <div className="w-full space-y-3 bg-pink-50 p-6 py-12 lg:mb-44 dark:bg-[#131313]">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-start space-y-6">
           <div className="flex w-full flex-col items-center justify-start space-y-3">
             <h3 className="mx-auto w-full text-center text-4xl font-bold lg:w-1/2">

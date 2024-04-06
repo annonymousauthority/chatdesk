@@ -2,8 +2,8 @@ import { Link } from '@inertiajs/react'
 
 export default function Index() {
   return (
-    <div className="relative mx-auto mt-16 flex h-full flex-col items-center justify-start p-6 pb-36 lg:p-0">
-      <div className="mx-auto max-w-6xl">
+    <div className="relative mx-auto mt-16 flex h-full flex-col items-center justify-start pb-36 lg:p-0">
+      <div className="mx-auto max-w-6xl p-6">
         <div className="mx-auto flex w-full justify-center rounded-xl bg-[#C6D3FF] p-1 px-2 text-center text-gray-600 lg:w-[40%]">
           <span className="mx-auto text-sm font-light ">
             An AI <span className="font-semibold text-blue-600">Chat</span>{' '}
@@ -55,7 +55,7 @@ export default function Index() {
           <div className="mx-auto w-full border border-gray-100 shadow-lg shadow-gray-300 lg:h-[400px] lg:w-[650px] dark:border-gray-800 dark:shadow-gray-800"></div>
         </div> */}
       </div>
-      <div className="mt-6 w-full space-y-3 bg-yellow-50 py-12 lg:mt-24 dark:bg-[#131313]">
+      <div className="mt-6 w-full space-y-3 bg-yellow-50 p-6 py-12 lg:mt-24  dark:bg-[#131313]">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-start">
           <h3 className="mx-auto w-full text-center text-4xl font-bold lg:w-1/2">
             Give Customers the Attention They Deserve
@@ -133,7 +133,7 @@ export default function Index() {
           </div>
         </div>
       </div>
-      <div className="w-full space-y-3 bg-pink-50 py-12 dark:bg-[#131313]">
+      <div className="w-full space-y-3 bg-pink-50 p-6 py-12  dark:bg-[#131313]">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-start space-y-6">
           <div className="flex w-full flex-col items-center justify-start space-y-3">
             <h3 className="mx-auto w-full text-center text-4xl font-bold lg:w-1/2">

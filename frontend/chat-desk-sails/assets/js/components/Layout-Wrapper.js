@@ -62,7 +62,7 @@ export default function LayoutWrapper({ children }) {
               <div>
                 <Link
                   href="/login"
-                  className="hidden w-[250px] text-center rounded-xl bg-blue-600 p-3 text-white hover:bg-blue-700 hover:shadow-sm hover:shadow-blue-600/50 lg:block"
+                  className="hidden w-[250px] rounded-xl bg-blue-600 p-3 text-center text-white hover:bg-blue-700 hover:shadow-sm hover:shadow-blue-600/50 lg:block"
                 >
                   Signin
                 </Link>
