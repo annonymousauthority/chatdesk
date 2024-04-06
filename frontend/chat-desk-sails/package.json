@@ -1,8 +1,8 @@
 {
   "name": "mellow-react",
-  "version": "0.0.0",
+  "version": "0.0.8",
   "private": true,
-  "description": "a Sails application",
+  "description": "Keeping up with customer inquiries on your site doesn’t have to be a delayed or difficult process. With a simple setup, you can deploy AI agents to handle conversations and respond to your customers quickly and easily.",
   "keywords": [],
   "dependencies": {
     "@headlessui/react": "^1.7.18",

@@ -9,12 +9,12 @@ export default function Layout({ children }) {
         <meta
           head-key="description"
           name="description"
-          content="This is the default description"
+          content="Keeping up with customer inquiries on your site doesn’t have to be a delayed or difficult process. With a simple setup, you can deploy AI agents to handle conversations and respond to your customers quickly and easily."
         />
         <meta name="inertia-version" content="[inertia-version]" />
         <meta
           name="inertia-root-url"
-          content="https://firebasestorage.googleapis.com"
+          content="https://firebasestorage.googleapis.com/"
         />
         <link rel="canonical" href="/" data-inertia-alternate />
         <link
@@ -50,7 +50,7 @@ export default function Layout({ children }) {
         />
         <meta
           property="og:image"
-          content="v0/b/talentyard-82bac.appspot.com/o/school_of_ai%2Fassets%2FScreenshot%202024-03-03%20at%209.28.41%E2%80%AFAM-min.png?alt=media&token=b197c6b2-fa6d-4efb-92d5-96c1953cabae"
+          content="v0/b/chat-desk-1eeb2.appspot.com/o/Screenshot%202024-04-06%20at%201.34.50%E2%80%AFPM.png?alt=media&token=4b26b2d7-2b93-4767-90c8-f75198c87f88"
         />
         <meta
           property="og:title"
@@ -58,7 +58,7 @@ export default function Layout({ children }) {
         />
         <meta
           property="og:description"
-          content="No longer burdened with the loneliness of intelligence we can now create intelligent systems that impact our daily live. Join us in this journey in the School of AI."
+          content="Keeping up with customer inquiries on your site doesn’t have to be a delayed or difficult process. With a simple setup, you can deploy AI agents to handle conversations and respond to your customers quickly and easily."
         />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="SoAI" />
@@ -67,7 +67,7 @@ export default function Layout({ children }) {
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:image"
-          content="v0/b/talentyard-82bac.appspot.com/o/school_of_ai%2Fassets%2FScreenshot%202024-03-03%20at%209.28.41%E2%80%AFAM-min.png?alt=media&token=b197c6b2-fa6d-4efb-92d5-96c1953cabae"
+          content="v0/b/chat-desk-1eeb2.appspot.com/o/Screenshot%202024-04-06%20at%201.34.50%E2%80%AFPM.png?alt=media&token=4b26b2d7-2b93-4767-90c8-f75198c87f88"
         />
         <meta name="twitter:creator" content="@_Augustine_F" />
         <meta
