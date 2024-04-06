@@ -72,7 +72,7 @@ export default function Layout({ children }) {
         />
         <meta
           name="twitter:description"
-          content="Keeping up with customer inquiries on your site doesn’t have to be a delayed or difficult process. With a simple setup, you can deploy AI agents to handle conversations and respond to your customers quickly and easily"
+          content="Keeping up with customer inquiries on your site doesn’t have to be a delayed or difficult process. With a simple setup, you can deploy AI agents to handle conversations and respond to your customers quickly and easily."
         />
         <meta name="robots" content="index, follow, nocache" />
         <meta
