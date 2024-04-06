@@ -47,7 +47,7 @@ export default function DashboardLayout({ children }) {
     )
   } else {
     return (
-      <main className="inter-chat-desk relative flex h-full flex-col overflow-hidden">
+      <main className="inter-chat-desk relative flex h-full flex-col overflow-hidden p-6 lg:p-0">
         <nav className=" z-30 mx-auto w-full">
           <div className="mx-auto flex  max-w-6xl items-center justify-between">
             <img
@@ -82,12 +82,12 @@ export default function DashboardLayout({ children }) {
             </div>
           </div>
         </nav>
-        <div className="mt-24 h-screen w-full overflow-auto pb-32 ">
-          <div className="mx-auto flex max-w-6xl items-start justify-start">
-            <div className="z-30 flex h-full w-[15%] flex-col items-start justify-start space-y-12 overflow-y-hidden">
-              <div className="flex flex-col items-start justify-start space-y-6">
-                <span className="text-2xl font-bold">Agents</span>
-                <ul className="flex flex-col items-start justify-start space-y-3 text-sm font-light">
+        <div className="mt-12 lg:mt-24 h-screen w-full overflow-auto pb-32 ">
+          <div className="mx-auto flex max-w-6xl flex-col items-start justify-start lg:flex-row">
+            <div className="z-30 flex h-full w-full flex-col flex-wrap items-start justify-start space-y-6 overflow-y-hidden lg:w-[15%] lg:flex-nowrap lg:space-y-12">
+              <div className="flex flex-wrap items-center justify-between space-y-3 lg:flex-col lg:flex-nowrap lg:items-start lg:justify-start lg:space-y-6">
+                <span className="text-2xl font-bold ">Agents</span>
+                <ul className="flex w-full flex-wrap items-center justify-between space-x-1 text-sm font-light lg:flex-col lg:flex-nowrap lg:items-start lg:justify-start lg:space-y-3">
                   <Link
                     href="/dashboard/chat-history"
                     className="font-normal hover:text-gray-400 hover:underline"
@@ -108,9 +108,9 @@ export default function DashboardLayout({ children }) {
                   </Link>
                 </ul>
               </div>
-              <div className="flex flex-col items-start justify-start space-y-6">
+              <div className="flex flex-wrap items-center justify-between space-y-3 lg:flex-col lg:flex-nowrap lg:items-start lg:justify-start lg:space-y-6">
                 <span className="text-2xl font-bold">Organization</span>
-                <ul className="flex flex-col items-start justify-start space-y-3 text-sm font-light">
+                <ul className="flex w-full flex-wrap items-center justify-between space-x-1 text-sm font-light lg:flex-col lg:flex-nowrap lg:items-start lg:justify-start lg:space-y-3">
                   <Link
                     href="/dashboard/metrics"
                     className="font-normal hover:text-gray-400 hover:underline"
@@ -138,9 +138,9 @@ export default function DashboardLayout({ children }) {
                   </Link>
                 </ul>
               </div>
-              <div className="flex flex-col items-start justify-start space-y-6">
+              <div className="flex flex-wrap items-center justify-between space-y-3 lg:flex-col lg:flex-nowrap lg:items-start lg:justify-start lg:space-y-6">
                 <span className="text-2xl font-bold">Docs</span>
-                <ul className="flex flex-col items-start justify-start space-y-3 text-sm font-light">
+                <ul className="flex w-full flex-wrap items-center justify-between space-x-1 text-sm font-light lg:flex-col lg:flex-nowrap lg:items-start lg:justify-start lg:space-y-3">
                   {profileConfig.embed_code ? (
                     <Link
                       href="/dashboard/setup-widget"
@@ -163,7 +163,7 @@ export default function DashboardLayout({ children }) {
                 </ul>
               </div>
             </div>
-            <article className="mb-32 w-[85%] overflow-hidden lg:ml-8">
+            <article className="mb-32 mt-16 w-full overflow-hidden lg:ml-8 lg:mt-0 lg:w-[85%]">
               {React.cloneElement(children, { user, profileConfig })}
             </article>
           </div>

@@ -143,7 +143,7 @@ export default function FeedbackHistory({ user }) {
                     <>
                       {e.rating > 0 && (
                         <div
-                          className={`flex h-full w-1/2 flex-col items-start text-left justify-start rounded-xl p-3 ${
+                          className={`flex h-full w-full lg:w-1/2 flex-col items-start justify-start rounded-xl p-3 text-left ${
                             i % 2 === 0 ? 'bg-pink-500' : 'bg-blue-500'
                           }`}
                         >

@@ -44,8 +44,8 @@ export default function ChatHistoryPage({ user }) {
           chats={chats}
         />
       )}
-      <div className="relative flex h-full flex-col items-start justify-start p-6 pt-0">
-        <div className="flex flex-col items-start justify-start">
+      <div className="relative flex h-full w-full flex-col items-start justify-start pt-0 lg:p-6">
+        <div className="flex w-full flex-col items-start justify-start">
           <h1 className="text-4xl font-bold text-gray-600 dark:text-gray-200">
             Chat History
           </h1>
@@ -61,7 +61,7 @@ export default function ChatHistoryPage({ user }) {
                   return (
                     <div
                       key={e.id}
-                      className="hover:bg-gray-gray-200 flex h-[150px] w-1/3 flex-col items-start justify-between rounded-xl border border-gray-200 bg-white p-6 py-3 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-700 dark:shadow-gray-800 dark:hover:bg-gray-800"
+                      className="hover:bg-gray-gray-200 flex h-[150px] w-full flex-col items-start justify-between rounded-xl border border-gray-200 bg-white p-6 py-3 hover:bg-gray-100 lg:w-1/3 dark:border-gray-700 dark:bg-gray-700 dark:shadow-gray-800 dark:hover:bg-gray-800"
                     >
                       <div className="flex w-full items-start justify-between">
                         <div className="flex flex-col items-start justify-start">

@@ -80,15 +80,15 @@ export default function MetricsPage({ user }) {
   return (
     <div>
       <h1 className="text-2xl font-bold">Usage Report</h1>
-      <div className="mt-4 flex w-full items-center justify-start gap-2">
-        <div className=" flex w-1/3 items-start justify-start space-x-4 rounded-xl border border-gray-200  p-6">
+      <div className="mt-4 flex flex-wrap w-full items-center justify-start gap-2">
+        <div className=" flex w-full lg:w-1/3 items-start justify-start space-x-4 rounded-xl border border-gray-200  p-6">
           <ChatBubbleBottomCenterIcon className="h-6 w-6" />
           <div className="flex flex-col items-start justify-start text-left">
             <span className="text-base text-gray-500">Chat Session</span>
             <span className="text-xl font-semibold">{chatSessions}</span>
           </div>
         </div>
-        <div className=" flex w-1/3 items-start justify-start space-x-4 rounded-xl border border-gray-200 p-6">
+        <div className=" flex w-full lg:w-1/3 items-start justify-start space-x-4 rounded-xl border border-gray-200 p-6">
           <StarIcon className="h-6 w-6" />
           <div className="flex flex-col items-start justify-start text-left">
             <span className="text-base text-gray-500">Feedback</span>
@@ -97,7 +97,7 @@ export default function MetricsPage({ user }) {
             </span>
           </div>
         </div>
-        <div className=" flex w-1/3 items-start justify-start space-x-4 rounded-xl border border-gray-200 p-6">
+        <div className=" flex w-full lg:w-1/3 items-start justify-start space-x-4 rounded-xl border border-gray-200 p-6">
           <svg
             width="17"
             height="22"
@@ -186,7 +186,7 @@ export default function MetricsPage({ user }) {
                     return (
                       <div
                         key={i}
-                        className={`flex h-full w-1/2 flex-col items-start justify-start rounded-xl p-3 text-left ${
+                        className={`flex h-full w-full lg:w-1/2 flex-col items-start justify-start rounded-xl p-3 text-left ${
                           i % 2 === 0 ? 'bg-pink-500' : 'bg-blue-500'
                         }`}
                       >

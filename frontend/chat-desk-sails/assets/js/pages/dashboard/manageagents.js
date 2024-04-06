@@ -64,7 +64,7 @@ export default function ManageAgents({ user, profileConfig }) {
   }, [])
   return (
     <div className="relative flex h-full flex-col items-start justify-start overflow-y-auto">
-      <div className="flex w-full items-center justify-between">
+      <div className="flex w-full flex-wrap items-center justify-between gap-2">
         <div className="flex flex-col items-start justify-start">
           <h1 className="text-4xl font-bold text-gray-600 dark:text-gray-200">
             Manage Agents
@@ -78,7 +78,7 @@ export default function ManageAgents({ user, profileConfig }) {
           onClick={() => {
             setCreateAgent(true)
           }}
-          disabled={profileConfig.number_of_agent == 1 && agent != null}
+          disabled={!profileConfig.agent_approved || agent != null || profileConfig.number_of_agent == 1}
           className={
             profileConfig.number_of_agent == 1 && agent != null
               ? 'w-[150px] rounded-xl bg-gray-400 p-1 text-white '
