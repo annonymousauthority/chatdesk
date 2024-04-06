@@ -176,7 +176,7 @@ export default function Index() {
       </div>
       <IframeResizer
         id="demo-contact"
-        src="https://chatdesk-widget.onrender.com/?agentKey=Ax13g_nih0ld"
+        src="https://widget.chatdesks.com/?agentKey=Ax13g_nih0ld"
         style={{
           width: '1px',
           minWidth: '100%',
