@@ -82,26 +82,28 @@ export default function ChatWidget({ agentConfig, id, agentKey, loading }) {
             <span>Hello ❤️</span>
             <span>How can we help?</span>
           </div>
-          <button
-            type="button"
-            disabled={loading}
-            onClick={() => {
-              setView(1)
-            }}
-            className="mt-6 flex min-h-[65px] w-full cursor-pointer items-center justify-between rounded-xl bg-gray-100 p-3 text-left hover:bg-gray-200"
-          >
-            <div className="flex w-3/4 flex-col items-start justify-start">
-              <span>Speak to our AI Agent</span>
-              <span className="text-xs text-gray-400">
-                Get real-time, and timely suppport.
-              </span>
-            </div>
-            <div className="flex w-1/4 justify-end">
-              <div className="flex h-[40px] w-[40px] items-center justify-center rounded-full bg-blue-950 text-2xl">
-                <span>👩🏽‍🦱</span>
+          {agentConfig != null && (
+            <button
+              type="button"
+              disabled={loading}
+              onClick={() => {
+                setView(1)
+              }}
+              className="mt-6 flex min-h-[65px] w-full cursor-pointer items-center justify-between rounded-xl bg-gray-100 p-3 text-left hover:bg-gray-200"
+            >
+              <div className="flex w-3/4 flex-col items-start justify-start">
+                <span>Speak to our AI Agent</span>
+                <span className="text-xs text-gray-400">
+                  Get real-time, and timely suppport.
+                </span>
               </div>
-            </div>
-          </button>
+              <div className="flex w-1/4 justify-end">
+                <div className="flex h-[40px] w-[40px] items-center justify-center rounded-full bg-blue-950 text-2xl">
+                  <span>👩🏽‍🦱</span>
+                </div>
+              </div>
+            </button>
+          )}
           {!loading && agentConfig.quicklinks.length > 0 ? (
             <div className="mt-6 flex min-h-[150px] flex-col items-start justify-start space-y-3 rounded-xl bg-white p-3">
               <span className="text-xl font-semibold text-gray-500">
