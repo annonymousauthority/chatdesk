@@ -78,7 +78,8 @@ export default function PricingPage() {
                 Starter
               </span>
               <span className="font-semibold">
-                ${annual ? pricing['starter'][1] : pricing['starter'][0]}/mo
+                ${annual ? pricing['starter'][1] : pricing['starter'][0]}
+                {annual ? '/yr' : '/mo'}
               </span>
             </div>
             <div>
@@ -104,7 +105,8 @@ export default function PricingPage() {
                 Starter Plus
               </span>
               <span className="font-semibold">
-                ${annual ? pricing['plus'][1] : pricing['plus'][0]}/mo
+                ${annual ? pricing['plus'][1] : pricing['plus'][0]}
+                {annual ? '/yr' : '/mo'}
               </span>
             </div>
             <div>
@@ -130,7 +132,8 @@ export default function PricingPage() {
                 Business
               </span>
               <span className="font-semibold">
-                ${annual ? pricing['business'][1] : pricing['business'][0]}/mo
+                ${annual ? pricing['business'][1] : pricing['business'][0]}
+                {annual ? '/yr' : '/mo'}
               </span>
             </div>
             <div>

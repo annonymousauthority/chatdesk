@@ -65,6 +65,7 @@ export default function ChatScreen({
                 document: agentConfig.document,
                 name: customer.name,
                 agent: agentConfig.name,
+                message: chat
               }),
             }
           )

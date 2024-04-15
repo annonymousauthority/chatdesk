@@ -25,6 +25,7 @@ class QueryRequest(BaseModel):
 
 
 router = APIRouter()
+MESSAGE_MEMORY = []
 
 
 @router.post("/queryembeddings/")
@@ -34,6 +35,9 @@ async def query_embeddings(request_body: QueryRequest = Body(...)):
     category = request_body.category
     name = request_body.name
     agent = request_body.agent
+    message = request_body.message
+    MESSAGE_MEMORY.append(message)
+    
     try:
         document_rereanked = embed_query(query=query, document=document)
         for r in document_rereanked.results:
@@ -49,6 +53,7 @@ async def query_embeddings(request_body: QueryRequest = Body(...)):
             context=document_rereanked.results[0].document,
             name=name,
             agent_name=agent,
+            chat_history=MESSAGE_MEMORY,
         )
 
         response = client.chat.completions.create(
@@ -58,6 +63,7 @@ async def query_embeddings(request_body: QueryRequest = Body(...)):
                 {"role": "user", "content": prompt},
             ],
         )
+
         return {
             "retrieved_document": document_rereanked.results[0].document,
             "augmented_response": response.choices[0].message.content,
