@@ -55,13 +55,11 @@ export default function ChatScreen({
       const aiQueryResponse = async () => {
         try {
           const response = await fetch(
-            'https://chatdesk-u4xh.onrender.com/queryembeddings/',
+            ' http://0.0.0.0:8000/queryembeddings/',
             {
-              mode: 'cors',
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
               },
               body: JSON.stringify({
                 query: mes,
@@ -69,7 +67,6 @@ export default function ChatScreen({
                 document: agentConfig.document,
                 name: customer.name,
                 agent: agentConfig.name,
-                message: chat,
               }),
             }
           )

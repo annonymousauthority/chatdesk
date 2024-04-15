@@ -35,9 +35,7 @@ async def query_embeddings(request_body: QueryRequest = Body(...)):
     category = request_body.category
     name = request_body.name
     agent = request_body.agent
-    message = request_body.chat
-    MESSAGE_MEMORY.append(message)
-
+    MESSAGE_MEMORY.append(query)
     try:
         document_rereanked = embed_query(query=query, document=document)
         for r in document_rereanked.results:
@@ -45,8 +43,11 @@ async def query_embeddings(request_body: QueryRequest = Body(...)):
             print(f"Relevance Score: {r.relevance_score}")
             print(f"Index: {r.index}")
             print("\n")
+
         info_logger.info(f"Query successfull.")
+
         client = OpenAI(api_key="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")
+
         prompt = prompt_structure(
             prompt=query,
             category=category,
@@ -59,8 +60,8 @@ async def query_embeddings(request_body: QueryRequest = Body(...)):
         response = client.chat.completions.create(
             model="gpt-4-0125-preview",
             messages=[
-                {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": prompt},
+                {"role": "assistant", "content": "You are a helpful assistant."},
+                {"role": "assistant", "content": prompt},
             ],
         )
 
@@ -69,6 +70,6 @@ async def query_embeddings(request_body: QueryRequest = Body(...)):
             "augmented_response": response.choices[0].message.content,
         }
     except Exception as e:
-        error_logger.error(f"Error uploading file {str(e)}")
-        print(f"Error uploading file {str(e)}")
+        error_logger.error(f"Error Generating Response {str(e)}")
+        print(f"Error Generating Response {str(e)}")
         raise HTTPException(status_code=500, detail=f"Internal Server Error ${str(e)}")

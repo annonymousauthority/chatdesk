@@ -17,7 +17,7 @@ app.add_middleware(
 
 setup_logger()
 
-# logger code
+
 debug_logger = getLogger("debug_logger")
 info_logger = getLogger("info_logger")
 error_logger = getLogger("error_logger")

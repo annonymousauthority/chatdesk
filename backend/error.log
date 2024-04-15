@@ -11,3 +11,11 @@
 2024-04-06 12:51:00,706 [ERROR] - Error uploading file 'str' object has no attribute 'read'
 2024-04-06 12:51:37,876 [ERROR] - Error uploading file 'str' object has no attribute 'read'
 2024-04-06 12:54:15,267 [ERROR] - Error uploading file 'str' object has no attribute 'read'
+2024-04-15 14:26:13,903 [ERROR] - Error Generating Response Error code: 400 - {'error': {'message': "Additional properties are not allowed ('context' was unexpected) - 'messages.1'", 'type': 'invalid_request_error', 'param': None, 'code': None}}
+2024-04-15 14:26:19,043 [ERROR] - Error Generating Response Error code: 400 - {'error': {'message': "Additional properties are not allowed ('context' was unexpected) - 'messages.1'", 'type': 'invalid_request_error', 'param': None, 'code': None}}
+2024-04-15 14:26:24,543 [ERROR] - Error Generating Response Error code: 400 - {'error': {'message': "Additional properties are not allowed ('context' was unexpected) - 'messages.1'", 'type': 'invalid_request_error', 'param': None, 'code': None}}
+2024-04-15 14:26:28,906 [ERROR] - Error Generating Response Error code: 400 - {'error': {'message': "Additional properties are not allowed ('context' was unexpected) - 'messages.1'", 'type': 'invalid_request_error', 'param': None, 'code': None}}
+2024-04-15 14:28:29,359 [ERROR] - Error Generating Response Error code: 400 - {'error': {'message': "'customer agent' is not one of ['system', 'assistant', 'user', 'function'] - 'messages.0.role'", 'type': 'invalid_request_error', 'param': None, 'code': None}}
+2024-04-15 14:28:33,556 [ERROR] - Error Generating Response Error code: 400 - {'error': {'message': "'customer agent' is not one of ['system', 'assistant', 'user', 'function'] - 'messages.0.role'", 'type': 'invalid_request_error', 'param': None, 'code': None}}
+2024-04-15 14:28:39,130 [ERROR] - Error Generating Response Error code: 400 - {'error': {'message': "'customer agent' is not one of ['system', 'assistant', 'user', 'function'] - 'messages.0.role'", 'type': 'invalid_request_error', 'param': None, 'code': None}}
+2024-04-15 14:28:43,232 [ERROR] - Error Generating Response Error code: 400 - {'error': {'message': "'customer agent' is not one of ['system', 'assistant', 'user', 'function'] - 'messages.0.role'", 'type': 'invalid_request_error', 'param': None, 'code': None}}
