@@ -55,7 +55,7 @@ export default function ChatScreen({
       const aiQueryResponse = async () => {
         try {
           const response = await fetch(
-            ' http://0.0.0.0:8000/queryembeddings/',
+            ' https://chatdesk-u4xh.onrender.com/queryembeddings/',
             {
               method: 'POST',
               headers: {
