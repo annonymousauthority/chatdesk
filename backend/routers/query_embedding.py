@@ -35,9 +35,9 @@ async def query_embeddings(request_body: QueryRequest = Body(...)):
     category = request_body.category
     name = request_body.name
     agent = request_body.agent
-    message = request_body.message
+    message = request_body.chat
     MESSAGE_MEMORY.append(message)
-    
+
     try:
         document_rereanked = embed_query(query=query, document=document)
         for r in document_rereanked.results:
@@ -70,4 +70,5 @@ async def query_embeddings(request_body: QueryRequest = Body(...)):
         }
     except Exception as e:
         error_logger.error(f"Error uploading file {str(e)}")
+        print(f"Error uploading file {str(e)}")
         raise HTTPException(status_code=500, detail=f"Internal Server Error ${str(e)}")

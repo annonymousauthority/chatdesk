@@ -58,14 +58,16 @@ export default function ChatScreen({
             'https://chatdesk-u4xh.onrender.com/queryembeddings/',
             {
               method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
+              headers: {
+                'Content-Type': 'application/json',
+              },
               body: JSON.stringify({
                 query: mes,
                 category: 'Customer Rep.',
                 document: agentConfig.document,
                 name: customer.name,
                 agent: agentConfig.name,
-                message: chat
+                chat: chat,
               }),
             }
           )
@@ -87,11 +89,11 @@ export default function ChatScreen({
             chat: arrayUnion(ai_chat),
           })
         } catch (error) {
-          console.log('Error found', error)
           if (retriesRemaining > 0) {
             retriesRemaining--
             setTimeout(aiQueryResponse, 1500)
           } else {
+            console.log('Error found', error)
             let ai_chat = {
               id: updatedChat.length + 1,
               sender: 'ai',
