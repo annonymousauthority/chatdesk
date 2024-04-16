@@ -29,4 +29,5 @@ module.exports.routes = {
   'GET /dashboard/metrics': 'dashboard/metrics',
   'GET /dashboard/billings': 'dashboard/billings',
   'GET /dashboard/setup-widget': 'dashboard/setup-widget',
+  'GET /dashboard/learn': 'dashboard/learn',
 }

@@ -1,7 +1,7 @@
 import CreateAgentModal from '@/components/CreateAgentModal'
 import LoaderSpinner from '@/components/Loader-Comp'
 import NoAgent404 from '@/components/NoAgent404'
-import { TrashIcon } from '@heroicons/react/24/outline'
+import { ClipboardDocumentIcon, TrashIcon } from '@heroicons/react/24/outline'
 import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { appFirestore } from '../lib/firebase'
@@ -40,7 +40,7 @@ export default function ManageAgents({ user, profileConfig }) {
     const formattedDate = dateObj.toLocaleString('en-US', options)
     return formattedDate
   }
-
+  
   useEffect(() => {
     ;(async () => {
       let agent = []
@@ -108,28 +108,37 @@ export default function ManageAgents({ user, profileConfig }) {
       <div className="flex w-full items-center justify-start">
         {!isLoading ? (
           <div className="mt-6 flex w-full items-center justify-center lg:w-[50%]">
-            {agent != null ? (
+            {agent != null && agent.length > 1 ? (
               <div className="flex h-full w-full flex-col items-start justify-start rounded-xl border border-gray-200 bg-gray-100 p-3 shadow-lg shadow-gray-200 dark:bg-gray-800 dark:shadow-gray-700">
                 <div className="flex w-full items-center justify-between">
                   <span className="text-xl font-semibold text-black dark:text-white">
                     {agent[0].name}
                   </span>
-                  <button
-                    type="button"
-                    onClick={async () => {
-                      await deleteDoc(
-                        doc(
-                          appFirestore,
-                          `USERS/${user.email}/${user.agent_key}/`,
-                          `config`
+                  <div>
+                    <button
+                      type="button"
+                      onClick={async () => {
+                        await deleteDoc(
+                          doc(
+                            appFirestore,
+                            `USERS/${user.email}/${user.agent_key}/`,
+                            `config`
+                          )
                         )
-                      )
-                      setAgent(null)
-                    }}
-                    className="text-sm text-gray-500 hover:text-gray-400 hover:underline dark:text-gray-300 dark:hover:text-gray-200"
-                  >
-                    <TrashIcon className="h-6 w-6 text-gray-500 hover:text-red-500" />
-                  </button>
+                        setAgent(null)
+                      }}
+                      className="text-sm text-gray-500 hover:text-gray-400 hover:underline dark:text-gray-300 dark:hover:text-gray-200"
+                    >
+                      <TrashIcon className="h-6 w-6 text-gray-500 hover:text-red-500" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={async () => {}}
+                      className="text-sm text-gray-500 hover:text-gray-400 hover:underline dark:text-gray-300 dark:hover:text-gray-200"
+                    >
+                      <ClipboardDocumentIcon className="h-6 w-6 text-gray-500 hover:text-white dark:text-gray-300" />
+                    </button>
+                  </div>
                 </div>
                 <div className="mt-6 flex w-full items-end justify-between">
                   <div className="flex flex-col items-start justify-start text-sm text-gray-500">
@@ -144,7 +153,9 @@ export default function ManageAgents({ user, profileConfig }) {
                 </div>
               </div>
             ) : (
-              <NoAgent404 />
+              <div className='flex justify-center items-center mx-auto w-full'>
+                <NoAgent404 />
+              </div>
             )}
           </div>
         ) : (

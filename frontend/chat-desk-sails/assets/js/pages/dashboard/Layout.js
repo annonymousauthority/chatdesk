@@ -82,12 +82,12 @@ export default function DashboardLayout({ children }) {
             </div>
           </div>
         </nav>
-        <div className="mt-12 lg:mt-24 h-screen w-full overflow-auto pb-32 ">
+        <div className="mt-12 h-screen w-full overflow-auto pb-32 lg:mt-24 ">
           <div className="mx-auto flex max-w-6xl flex-col items-start justify-start lg:flex-row">
             <div className="z-30 flex h-full w-full flex-col flex-wrap items-start justify-start space-y-6 overflow-y-hidden lg:w-[15%] lg:flex-nowrap lg:space-y-12">
               <div className="flex flex-wrap items-center justify-between space-y-3 lg:flex-col lg:flex-nowrap lg:items-start lg:justify-start lg:space-y-6">
                 <span className="text-2xl font-bold ">Agents</span>
-                <ul className="flex w-full flex-wrap items-center justify-between space-x-1 text-sm font-light lg:flex-col lg:flex-nowrap lg:items-start lg:justify-start lg:space-y-3">
+                <ul className="flex w-full flex-wrap items-center justify-between  space-x-1 text-sm font-light lg:flex-col lg:flex-nowrap lg:items-start lg:justify-start lg:space-x-0 lg:space-y-3">
                   <Link
                     href="/dashboard/chat-history"
                     className="font-normal hover:text-gray-400 hover:underline"
@@ -110,7 +110,7 @@ export default function DashboardLayout({ children }) {
               </div>
               <div className="flex flex-wrap items-center justify-between space-y-3 lg:flex-col lg:flex-nowrap lg:items-start lg:justify-start lg:space-y-6">
                 <span className="text-2xl font-bold">Organization</span>
-                <ul className="flex w-full flex-wrap items-center justify-between space-x-1 text-sm font-light lg:flex-col lg:flex-nowrap lg:items-start lg:justify-start lg:space-y-3">
+                <ul className="flex w-full flex-wrap items-center justify-between space-x-1 text-sm  font-light lg:flex-col lg:flex-nowrap lg:items-start lg:justify-start lg:space-x-0 lg:space-y-3">
                   <Link
                     href="/dashboard/metrics"
                     className="font-normal hover:text-gray-400 hover:underline"
@@ -140,7 +140,7 @@ export default function DashboardLayout({ children }) {
               </div>
               <div className="flex flex-wrap items-center justify-between space-y-3 lg:flex-col lg:flex-nowrap lg:items-start lg:justify-start lg:space-y-6">
                 <span className="text-2xl font-bold">Docs</span>
-                <ul className="flex w-full flex-wrap items-center justify-between space-x-1 text-sm font-light lg:flex-col lg:flex-nowrap lg:items-start lg:justify-start lg:space-y-3">
+                <ul className="flex w-full flex-wrap items-center justify-between space-x-1 text-sm font-light lg:flex-col lg:flex-nowrap lg:items-start lg:justify-start lg:space-x-0 lg:space-y-3">
                   {profileConfig.embed_code ? (
                     <Link
                       href="/dashboard/setup-widget"
@@ -155,7 +155,7 @@ export default function DashboardLayout({ children }) {
                     </div>
                   )}
                   <Link
-                    href="/dashboard/learn-chatdesk"
+                    href="/dashboard/learn"
                     className="flex items-center justify-between font-normal hover:text-gray-400 hover:underline"
                   >
                     <span>Learn</span>

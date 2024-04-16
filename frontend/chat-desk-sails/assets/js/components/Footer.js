@@ -44,7 +44,7 @@ export default function Footer() {
               >
                 Features
               </Link>
-              <Link
+              {/* <Link
                 href={'/consulting'}
                 className="border-b-2 border-transparent hover:border-red-400"
               >
@@ -55,7 +55,7 @@ export default function Footer() {
                 className="border-b-2 border-transparent hover:border-red-400"
               >
                 Demo
-              </Link>
+              </Link> */}
             </ul>
           </div>
           <div className="w-1/2">
@@ -63,7 +63,7 @@ export default function Footer() {
               Company
             </span>
             <ul className="flex flex-col items-start justify-start text-xs font-light text-black lg:text-sm dark:text-gray-300">
-              <Link
+              {/* <Link
                 href={'/'}
                 className="border-b-2 border-transparent hover:border-red-400"
               >
@@ -74,7 +74,7 @@ export default function Footer() {
                 className="border-b-2 border-transparent hover:border-red-400"
               >
                 Privacy Policy
-              </a>
+              </a> */}
               <Link
                 href={'/consulting'}
                 className="border-b-2 border-transparent hover:border-red-400"

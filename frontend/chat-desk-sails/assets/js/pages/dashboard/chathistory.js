@@ -54,9 +54,9 @@ export default function ChatHistoryPage({ user }) {
           </p>
         </div>
         {!isLoading ? (
-          <div className=" w-full overflow-y-auto">
+          <div className="w-full overflow-y-auto">
             {chatHistory != null ? (
-              <div className="scroll-hide mt-8 flex w-full flex-wrap gap-2 overflow-y-auto">
+              <div className="scroll-hide mt-8 flex w-full flex-wrap gap-2 overflow-y-auto justify-center items-center">
                 {chatHistory.map((e, i) => {
                   return (
                     <div
